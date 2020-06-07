@@ -12,8 +12,10 @@ public class Game {
 		Deck deck = new Deck();
 		Board board = new Board();
 		for (int i = 0; i < 52; i++) {
-			System.out.println(deck.getDeck().get(i));
+			System.out.println(deck.getDeck()
+					.get(i));
 		}
+
 	}
 
 }
