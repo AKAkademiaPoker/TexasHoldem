@@ -8,8 +8,7 @@ public class Menu {
 
 	public Menu() {
 		MenuTypes menuTypes = new MenuTypes();
-		this.menuType = menuTypes.getMenuTypes()
-				.get(0);
+		this.menuType = menuTypes.getMenuTypes().get(0);
 		menuList = menuTypes.getMenuList(menuType);
 	}
 
@@ -26,8 +25,7 @@ public class Menu {
 	public void print() {
 		System.out.println("Kérem, válasszon az alábbi menüpontok között:");
 		for (int i = 0; i < menuList.size(); i++) {
-			System.out.println((i + 1) + ". " + menuList.get(i)
-					.getOnHUN());
+			System.out.println((i + 1) + ". " + menuList.get(i).getOnHUN());
 		}
 	}
 
@@ -41,30 +39,20 @@ public class Menu {
 
 	public void setNextMenu(MenuPoint menuPoint) {
 		MenuTypes menuTypes = new MenuTypes();
-		if (menuType.equals(menuTypes.getMenuTypes()
-				.get(0)) && menuPoint.equals(MenuPoint.SIGN_UP)) {
-			setMenu(menuTypes.getMenuTypes()
-					.get(1));
-		} else if (menuType.equals(menuTypes.getMenuTypes()
-				.get(1)) && menuPoint.equals(MenuPoint.HALL_OF_FRAME)) {
-			setMenu(menuTypes.getMenuTypes()
-					.get(2));
-		} else if (menuType.equals(menuTypes.getMenuTypes()
-				.get(1)) && menuPoint.equals(MenuPoint.GAME_START)) {
-			setMenu(menuTypes.getMenuTypes()
-					.get(3));
-		} else if (menuType.equals(menuTypes.getMenuTypes()
-				.get(2)) && menuPoint.equals(MenuPoint.TO_PREVIOUS)) {
-			setMenu(menuTypes.getMenuTypes()
-					.get(1));
-		} else if (menuType.equals(menuTypes.getMenuTypes()
-				.get(3)) && (menuPoint == null || !menuPoint.equals(MenuPoint.ERROR))) {
-			setMenu(menuTypes.getMenuTypes()
-					.get(4));
-		} else if (menuType.equals(menuTypes.getMenuTypes()
-				.get(4)) && (menuPoint == null || !menuPoint.equals(MenuPoint.ERROR))) {
-			setMenu(menuTypes.getMenuTypes()
-					.get(1));
+		if (menuType.equals(menuTypes.getMenuTypes().get(0)) && menuPoint.equals(MenuPoint.SIGN_UP)) {
+			setMenu(menuTypes.getMenuTypes().get(1));
+		} else if (menuType.equals(menuTypes.getMenuTypes().get(1)) && menuPoint.equals(MenuPoint.HALL_OF_FRAME)) {
+			setMenu(menuTypes.getMenuTypes().get(2));
+		} else if (menuType.equals(menuTypes.getMenuTypes().get(1)) && menuPoint.equals(MenuPoint.GAME_START)) {
+			setMenu(menuTypes.getMenuTypes().get(3));
+		} else if (menuType.equals(menuTypes.getMenuTypes().get(2)) && menuPoint.equals(MenuPoint.TO_PREVIOUS)) {
+			setMenu(menuTypes.getMenuTypes().get(1));
+		} else if (menuType.equals(menuTypes.getMenuTypes().get(3))
+				&& (menuPoint == null || !menuPoint.equals(MenuPoint.ERROR))) {
+			setMenu(menuTypes.getMenuTypes().get(4));
+		} else if (menuType.equals(menuTypes.getMenuTypes().get(4))
+				&& (menuPoint == null || !menuPoint.equals(MenuPoint.ERROR))) {
+			setMenu(menuTypes.getMenuTypes().get(1));
 		}
 
 	}

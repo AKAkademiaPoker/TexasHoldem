@@ -3,12 +3,28 @@ package com.ak.texasholdem;
 public class Player {
 	
 	private String name;
+	public String getName() {
+		return name;
+	}
+
 	private long cash;
 	
+	public long getCash() {
+		return cash;
+	}
+
 	private String loginName;
 	private String password;
 	
 	private Card card1;
+	public Card getCard1() {
+		return card1;
+	}
+
+	public Card getCard2() {
+		return card2;
+	}
+
 	private Card card2;
 
 	public Player() {
