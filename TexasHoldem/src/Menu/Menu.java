@@ -13,6 +13,11 @@ public class Menu {
 		menuList = menuTypes.getMenuList(menuType);
 	}
 
+	public Menu(String menuType) {
+		this.menuType = menuType;
+		menuList = new MenuTypes().getMenuList(menuType);
+	}
+
 	public void setMenu(String key) {
 		this.menuType = key;
 		this.menuList = new MenuTypes().getMenuList(key);
@@ -34,21 +39,10 @@ public class Menu {
 		return MenuPoint.ERROR;
 	}
 
-	/**
-	 * only if "statistic" menuType (index=2) -> "game start" (index=1)
-	 */
-	public void setPreviousMenu() {
-		if (menuType.equals(new MenuTypes().getMenuTypes()
-				.get(2))) {
-			setMenu(new MenuTypes().getMenuTypes()
-					.get(1));
-		}
-	}
-
 	public void setNextMenu(MenuPoint menuPoint) {
 		MenuTypes menuTypes = new MenuTypes();
 		if (menuType.equals(menuTypes.getMenuTypes()
-				.get(0))) {
+				.get(0)) && menuPoint.equals(MenuPoint.SIGN_UP)) {
 			setMenu(menuTypes.getMenuTypes()
 					.get(1));
 		} else if (menuType.equals(menuTypes.getMenuTypes()
@@ -60,11 +54,15 @@ public class Menu {
 			setMenu(menuTypes.getMenuTypes()
 					.get(3));
 		} else if (menuType.equals(menuTypes.getMenuTypes()
-				.get(3))) {
+				.get(2)) && menuPoint.equals(MenuPoint.TO_PREVIOUS)) {
+			setMenu(menuTypes.getMenuTypes()
+					.get(1));
+		} else if (menuType.equals(menuTypes.getMenuTypes()
+				.get(3)) && (menuPoint == null || !menuPoint.equals(MenuPoint.ERROR))) {
 			setMenu(menuTypes.getMenuTypes()
 					.get(4));
 		} else if (menuType.equals(menuTypes.getMenuTypes()
-				.get(4))) {
+				.get(4)) && (menuPoint == null || !menuPoint.equals(MenuPoint.ERROR))) {
 			setMenu(menuTypes.getMenuTypes()
 					.get(1));
 		}

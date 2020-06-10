@@ -1,13 +1,12 @@
 package Menu;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class MenuTypes {
 	private Map<String, List<MenuPoint>> menus;
-	private final List<String> menuTypes = new ArrayList<String>(List.of("bejelentkezés", "játék indítása", "statisztika", "limitek", "játék"));
+	private final List<String> menuTypes = List.of("bejelentkezés", "játék indítása", "statisztika", "limitek", "játék");
 
 	{
 		this.menus = new HashMap<>();

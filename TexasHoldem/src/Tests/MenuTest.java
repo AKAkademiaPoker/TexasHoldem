@@ -26,24 +26,26 @@ public class MenuTest {
 		menu.setMenu("játék");
 		menu.print();
 		System.out.println("-------------");
-		
-		MenuTypes menuTypes=new MenuTypes();
-		
-		menu.setMenu(menuTypes.getMenuTypes().get(0));
+
+		MenuTypes menuTypes = new MenuTypes();
+
+		menu.setMenu(menuTypes.getMenuTypes()
+				.get(0));
 		menu.print();
 		System.out.println();
-		MenuPoint menuPoint=null;
+		MenuPoint menuPoint = MenuPoint.SIGN_UP;
 		menu.setNextMenu(menuPoint);
 		menu.print();
 		System.out.println();
-		menuPoint=MenuPoint.HALL_OF_FRAME;
+		menuPoint = MenuPoint.HALL_OF_FRAME;
+		menu.setNextMenu(menuPoint);
+		menu.print();
+		menuPoint = MenuPoint.TO_PREVIOUS;
+		System.out.println();
 		menu.setNextMenu(menuPoint);
 		menu.print();
 		System.out.println();
-		menu.setPreviousMenu();
-		menu.print();
-		System.out.println();
-		menuPoint=MenuPoint.GAME_START;
+		menuPoint = MenuPoint.GAME_START;
 		menu.setNextMenu(menuPoint);
 		menu.print();
 		System.out.println();

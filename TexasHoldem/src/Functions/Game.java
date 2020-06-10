@@ -4,7 +4,6 @@ import java.util.List;
 
 import Models.Board;
 import Models.Deck;
-import Models.Player;
 
 public class Game {
 
