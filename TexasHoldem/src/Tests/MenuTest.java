@@ -11,7 +11,7 @@ public class MenuTest {
 	 * it is only tests
 	 */
 	public static void main(String[] args) {
-		var session = new Session();
+		Session session = new Session();
 		session.run();
 	}
 
