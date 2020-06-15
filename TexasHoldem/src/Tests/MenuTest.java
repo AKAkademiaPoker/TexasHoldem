@@ -13,6 +13,9 @@ public class MenuTest {
 	public static void main(String[] args) {
 		Session session = new Session();
 		session.run();
+		
+		System.out.println();
+		
 	}
 
 }
