@@ -1,66 +1,76 @@
 package com.ak.texasholdem;
 
+import com.ak.texasholdem.cards.Card;
+
 public class Player {
-	
-	private String name;
-	public String getName() {
-		return name;
-	}
+
+	private String nickname;
+	private String userName;
+	private String password;
+	private int id;
 
 	private long cash;
-	
-	public long getCash() {
-		return cash;
-	}
 
-	private String loginName;
-	private String password;
-	
 	private Card card1;
-	public Card getCard1() {
-		return card1;
-	}
-
-	public Card getCard2() {
-		return card2;
-	}
-
 	private Card card2;
 
-	public Player() {
-		
-	}
-	
-	public Player(String name, String password, long cash) {
+	public Player(String nickname, String userName, String password) {
 		super();
-		this.name = name;
+		this.nickname = nickname;
+		this.userName = userName;
 		this.password = password;
-		this.cash = cash;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public String getNickname() {
+		return nickname;
 	}
 
-	public void setCash(long cash) {
-		this.cash = cash;
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
-	public void setLoginName(String loginName) {
-		this.loginName = loginName;
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPassword() {
+		return password;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
+	public long getCash() {
+		return cash;
+	}
+
+	public void setCash(long cash) {
+		this.cash = cash;
+	}
+
+	public Card getCard1() {
+		return card1;
+	}
+
 	public void setCard1(Card card1) {
 		this.card1 = card1;
+	}
+
+	public Card getCard2() {
+		return card2;
 	}
 
 	public void setCard2(Card card2) {
 		this.card2 = card2;
 	}
 
-
+	public int getId() {
+		return id;
+	}
+	
 }

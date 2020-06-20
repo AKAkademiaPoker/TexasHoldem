@@ -2,8 +2,9 @@ package Functions;
 
 import java.util.List;
 
+import com.ak.texasholdem.cards.Deck;
+
 import Models.Board;
-import Models.Deck;
 
 public class Game {
 

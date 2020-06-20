@@ -1,4 +1,4 @@
-package Menu;
+package com.ak.texasholdem.main;
 
 public enum MenuPoint {
 	RULES("Játékszabály"), LOGIN("Bejelentkezés"), SIGN_UP("Regisztráció"), DEPOSIT("Befizetés"), PAYMENT("Kifizetés"), GAME_START("Játék indítása"), HALL_OF_FRAME("Statisztika"), TOP_10("Top 10"),

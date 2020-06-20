@@ -3,6 +3,8 @@ package Models;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ak.texasholdem.cards.Card;
+
 public class Hand {
 
 	private List<Card> cardsInHand;
