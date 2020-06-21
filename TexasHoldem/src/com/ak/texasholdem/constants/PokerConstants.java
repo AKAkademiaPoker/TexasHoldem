@@ -1,8 +1,6 @@
 package com.ak.texasholdem.constants;
 
 public class PokerConstants {
-	public static final int maxPlayer = 10;
-	
-	
+	public static final int MAX_PLAYER = 10;
 
 }

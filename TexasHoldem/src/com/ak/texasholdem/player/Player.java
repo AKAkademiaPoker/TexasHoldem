@@ -1,4 +1,4 @@
-package com.ak.texasholdem;
+package com.ak.texasholdem.player;
 
 import com.ak.texasholdem.cards.Card;
 

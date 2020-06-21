@@ -1,4 +1,4 @@
-package com.ak.texasholdem;
+package com.ak.texasholdem.player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,7 @@ public class Players {
 	}
 
 	private boolean isPlayersFull() {
-		return players.size() >= PokerConstants.maxPlayer;
+		return players.size() >= PokerConstants.MAX_PLAYER;
 	}
 
 }

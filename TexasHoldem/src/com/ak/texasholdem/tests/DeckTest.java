@@ -1,4 +1,4 @@
-package Tests;
+package com.ak.texasholdem.tests;
 
 import com.ak.texasholdem.cards.Deck;
 

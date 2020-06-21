@@ -2,7 +2,10 @@ package com.ak.texasholdem.cards;
 
 public enum Suit {
 
-	SPADES("PIKK", 'P'), HEARTS("KÖR", 'K'), CLUBS("TREFF", 'T'), DIAMOND("KÁRÓ", 'C');
+	SPADES("PIKK", '\u2660'),
+	HEARTS("KÖR", '\u2665'),
+	CLUBS("TREFF", '\u2663'),
+	DIAMONDS("KÁRÓ", '\u2666');
 
 	private String hunName;
 	private char symbol;

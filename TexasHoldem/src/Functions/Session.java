@@ -3,13 +3,12 @@ package Functions;
 import java.util.List;
 import java.util.Scanner;
 
-import com.ak.texasholdem.Player;
+import com.ak.texasholdem.board.Board;
 import com.ak.texasholdem.cards.Deck;
-import com.ak.texasholdem.main.Menu;
-import com.ak.texasholdem.main.MenuPoint;
-import com.ak.texasholdem.main.MenuTypes;
-
-import Models.Board;
+import com.ak.texasholdem.menu.Menu;
+import com.ak.texasholdem.menu.MenuPoint;
+import com.ak.texasholdem.menu.MenuTypes;
+import com.ak.texasholdem.player.Player;
 
 public class Session {
 //
@@ -30,8 +29,8 @@ public class Session {
 //		for (int i = 0; i < 5; i++) {
 //			// kivett játékosok hozzáadása
 //			while (true) {
-//				System.out.println("K�r:" + i);
-//				System.out.println("J�t�kos: "+ players.get(player).getName());
+//				System.out.println("K�r:" + i);
+//				System.out.println("J�t�kos: "+ players.get(player).getName());
 //				System.out.printf("Asztal lapok: %s          Pot: %d          Limit: %d/%d%n", board.getCardsOnBoard(),
 //						bank, limit / 2, limit);
 //				System.out.printf("Saját lapok: %s %s          Pénz: %d", players.get(player).getCard1().toString(),

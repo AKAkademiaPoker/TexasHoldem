@@ -1,4 +1,4 @@
-package Models;
+package com.ak.texasholdem.board;
 
 import java.util.ArrayList;
 import java.util.List;

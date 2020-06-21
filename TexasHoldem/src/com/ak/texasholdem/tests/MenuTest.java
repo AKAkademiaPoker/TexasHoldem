@@ -1,10 +1,4 @@
-package Tests;
-
-import com.ak.texasholdem.main.Menu;
-import com.ak.texasholdem.main.MenuPoint;
-import com.ak.texasholdem.main.MenuTypes;
-
-import Functions.Session;
+package com.ak.texasholdem.tests;
 
 public class MenuTest {
 
