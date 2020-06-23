@@ -66,7 +66,10 @@ public class Menu {
 			setMenu(menuTypes.getMenuTypes()
 					.get(1));
 		}
+	}
 
+	public int numberOfOptions() {
+		return menuList.size();
 	}
 
 }

@@ -1,18 +1,26 @@
 package com.ak.texasholdem.player;
 
+import java.util.Scanner;
+
 import com.ak.texasholdem.cards.Card;
+import com.ak.texasholdem.io.UserInputHandler;
+import com.ak.texasholdem.menu.Menu;
+import com.ak.texasholdem.menu.MenuPoint;
 
 public class Player {
 
+	// TODO remove to another subclass
 	private String nickname;
 	private String userName;
 	private String password;
 	private int id;
 
-	private long cash;
-
+	private int cash;
+	private int sessionPot;
 	private Card card1;
 	private Card card2;
+	private boolean isInGame;
+	private boolean isChecked;
 
 	public Player(String nickname, String userName, String password) {
 		super();
@@ -45,11 +53,11 @@ public class Player {
 		this.password = password;
 	}
 
-	public long getCash() {
+	public int getCash() {
 		return cash;
 	}
 
-	public void setCash(long cash) {
+	public void setCash(int cash) {
 		this.cash = cash;
 	}
 
@@ -72,5 +80,36 @@ public class Player {
 	public int getId() {
 		return id;
 	}
-	
+
+	public boolean isInGame() {
+		return isInGame;
+	}
+
+	public void setInGame(boolean isInGame) {
+		this.isInGame = isInGame;
+	}
+
+	public boolean isChecked() {
+		return isChecked;
+	}
+
+	public void setChecked(boolean isChecked) {
+		this.isChecked = isChecked;
+	}
+
+	public int getSessionPot() {
+		return sessionPot;
+	}
+
+	public void setSessionPot(int sessionPot) {
+		this.sessionPot = sessionPot;
+	}
+
+	public MenuPoint playerStep(Scanner scanner) {
+		Menu menu = new Menu("játék");
+		menu.print();
+		int input = new UserInputHandler(scanner).getIntAmongTwoNumbs(1, menu.numberOfOptions());
+		return menu.getMenuPoint(input);
+	}
+
 }
