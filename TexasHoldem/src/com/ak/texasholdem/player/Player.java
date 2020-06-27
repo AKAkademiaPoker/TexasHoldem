@@ -20,13 +20,14 @@ public class Player {
 	private Card card1;
 	private Card card2;
 	private boolean isInGame;
-	private boolean isChecked;
+	private boolean isChecked = false;
 
-	public Player(String nickname, String userName, String password) {
+	public Player(String nickname, String userName, String password, int cash) {
 		super();
 		this.nickname = nickname;
 		this.userName = userName;
 		this.password = password;
+		this.cash = cash;
 	}
 
 	public String getNickname() {
@@ -105,11 +106,14 @@ public class Player {
 		this.sessionPot = sessionPot;
 	}
 
-	public MenuPoint playerStep(Scanner scanner) {
-		Menu menu = new Menu("játék");
+	public MenuPoint playerStep(Scanner scanner, Menu menu) {
 		menu.print();
 		int input = new UserInputHandler(scanner).getIntAmongTwoNumbs(1, menu.numberOfOptions());
 		return menu.getMenuPoint(input);
+	}
+	@Override
+	public String toString() {
+		return nickname + " " + cash;
 	}
 
 }

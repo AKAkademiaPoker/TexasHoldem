@@ -21,70 +21,119 @@ public class Session {
 	private Scanner scanner = new Scanner(System.in);
 	private int minPot = 250;
 	private int bank = 0;
+	private boolean isRaised;
+	private int actualRaise = 0;
+	private Menu menu = new Menu("játék call nélkül");
 
 	public Session(Board board, Players players, Deck deck) {
 		this.board = board;
 		this.players = players;
 		this.deck = deck;
-		bigBlind = players.getPlayers()
-				.size() - 1;
+		bigBlind = players.getPlayers().size() - 1;
 
 	}
 
 	public void run() {
-
 		readyToPlay();
 		blinds();
 		dealing();
-		while (isEveryoneChecked()) {
-			int acualRaise = 0;
+		doRound();
+		addCards(3);
+		doRound();
+		addCards(1);
+		doRound();
+		addCards(1);
+		doRound();
+		// TODO: kiértékelés + kifizetés
+		// TODO: vakok forgatása
+	}
 
-			for (int i = 0; i < players.getPlayers()
-					.size(); i++) {
-				Player current = players.getPlayers()
-						.get(i);
-				MenuPoint menuPoint = current.playerStep(scanner);
+	private void addCards(int num) {
+		board.addBurnedCard(deck.getCard());
+		for (int i = 0; i < num; i++) {
+			board.addVisibleCards(deck.getCard());
 
-				if (menuPoint.equals(MenuPoint.RULES)) {
-					// TODO
-					System.out.println("SzabÃ¡lyok....");
-				}
+		}
+	}
+
+	private void doRound() {
+		for (int i = players.getPlayers().size();; i++) {
+			int index = i % players.getPlayers().size();
+			Player current = players.getPlayers().get(index);
+			System.out.println(current.toString());
+			MenuPoint menuPoint = current.playerStep(scanner, menu);
+
+			if (menuPoint.equals(MenuPoint.RULES)) {
+				// TODO
+				System.out.println("Szabályok....");
+			}
+			if (menuPoint.equals(MenuPoint.RAISE)) {
+				doRaise(current);
+			}
+			if (menuPoint.equals(MenuPoint.FOLD)) {
+				current.setInGame(false);
+
+			}
+			if (!isRaised) {
 				if (menuPoint.equals(MenuPoint.CHECK)) {
-					System.out.println("PasszolSet");
+					System.out.println("Passzol");
 					current.setChecked(true);
+					System.out.println(current.toString());
+					if (isEveryoneChecked()) {
+						break;
+					}
 				}
-				if (menuPoint.equals(MenuPoint.RAISE)) {
-					System.out.println("KÃ©rem, vÃ¡lasszon emelÃ©si Ã¶sszeget: ");
-					int raisePot = new UserInputHandler(scanner).getIntAmongTwoNumbs(minPot, current.getCash());
-					System.out.println("Emelt: " + raisePot);
-					current.setCash(current.getCash() - raisePot);
-					current.setSessionPot(current.getSessionPot() + raisePot);
-					bank += raisePot;
-					acualRaise = current.getSessionPot();
-				}
-				if (menuPoint.equals(MenuPoint.FOLD)) {
-					current.setInGame(false);
-
-				}
+			} else {
 				if (menuPoint.equals(MenuPoint.CALL)) {
-					if (acualRaise > current.getSessionPot()) {
-						int difference = acualRaise - current.getSessionPot();
-						current.setCash(current.getCash() - difference);
-						bank += difference;
+					System.out.println(current.getSessionPot());
+					if (actualRaise > current.getSessionPot()) {
+						doCall(current);
+					}
+					current.setChecked(true);
+					if (isEveryoneChecked()) {
+						break;
 					}
 				}
 			}
 		}
+	}
 
+	private void doCall(Player current) {
+		int difference = actualRaise - current.getSessionPot();
+		current.setCash(current.getCash() - difference);
+		bank += difference;
+		current.setSessionPot(current.getSessionPot() + difference);
+		System.out.println(current.getSessionPot() + " session pot");
+		System.out.println(current.toString());
+	}
+
+	private void doRaise(Player current) {
+		System.out.println("Kérem, válasszon emelési összeget: ");
+		System.out.println(minPot + " " + current.getCash());
+		int raisePot = new UserInputHandler(scanner).getIntAmongTwoNumbs(minPot, current.getCash());
+		System.out.println("Emelt: " + raisePot);
+		current.setCash(current.getCash() - raisePot);
+		current.setSessionPot(current.getSessionPot() + raisePot);
+		bank += raisePot;
+		actualRaise = current.getSessionPot();
+		players.setAllNotChecked();
+		current.setChecked(true);
+		isRaised = true;
+		menu = new Menu("játék check nélkül");
 	}
 
 	private boolean isEveryoneChecked() {
-		// TODO Auto-generated method stub
+		for (Player player : players.getPlayers()) {
+			if (player.isInGame() && !player.isChecked()) {
+				return false;
+			}
+		}
 		return true;
 	}
 
 	private void blinds() {
-		// TODO kis-, nagyvak beÃ¡llÃ­tÃ¡sa + bank
+		players.getPlayers().get(smallBlind).setSessionPot(minPot / 2);
+		players.getPlayers().get(bigBlind).setSessionPot(minPot);
 
 	}
 
@@ -102,94 +151,4 @@ public class Session {
 
 		}
 	}
-
-//
-//	private List<Player> players = List.of(new Player("AAAA", "bbb", 15000), new Player("BBB", "aaa", 25000),
-//			new Player("CCC", "aaa", 27000));
-//	private Deck deck = new Deck();
-//	private long bank = 0;
-//	private Board board = new Board();
-//	private int limit = 100;
-//	private Scanner scanner = new Scanner(System.in);
-//	private int raise = 0;
-//	private int callCounter = 0;
-//
-//	public void run() {
-//		int player = 0;
-//		dealoutCards();
-//		setBlinds();
-//		for (int i = 0; i < 5; i++) {
-//			// kivett jÃ¡tÃ©kosok hozzÃ¡adÃ¡sa
-//			while (true) {
-//				System.out.println("Kï¿½r:" + i);
-//				System.out.println("Jï¿½tï¿½kos: "+ players.get(player).getName());
-//				System.out.printf("Asztal lapok: %s          Pot: %d          Limit: %d/%d%n", board.getCardsOnBoard(),
-//						bank, limit / 2, limit);
-//				System.out.printf("SajÃ¡t lapok: %s %s          PÃ©nz: %d", players.get(player).getCard1().toString(),
-//						players.get(player).getCard2().toString(), players.get(player).getCash());
-//				System.out.println("Te jÃ¶ssz: ");
-//				Menu menu = new Menu("jÃ¡tÃ©k");
-//				menu.print();
-//				System.out.print(">");
-//				int choice = scanner.nextInt();
-//				MenuPoint menuPoint = menu.getMenuPoint(choice);
-//				if (menuPoint.equals(MenuPoint.CALL)) {
-//					callCounter++;
-//					long newCash = players.get(player).getCash() - raise;
-//					if (newCash < 0) {
-//						players.get(player).setCash(0);
-//						bank += players.get(player).getCash();
-//					} else {
-//						players.get(player).setCash(newCash);
-//						bank += raise;
-//					}
-//
-//				} else if (menuPoint.equals(MenuPoint.RAISE)) {
-//					callCounter = 0;
-//					System.out.println("TÃ©t:");
-//					int bet = 0;
-//					do {
-//						System.out.println(">");
-//						bet = scanner.nextInt();
-//					} while (bet >= players.get(player).getCash());
-//					raise = bet;
-//					bank += bet;
-//				} else if (menuPoint.equals(MenuPoint.FOLD)) {
-//					// ToDO
-//					// JÃ¡tÃ©kos lista Ãºj paramÃ©ter hozzÃ¡adÃ¡sa boolean Folded...
-//				}
-//
-//				player++;
-//				if (player > players.size() - 1) {
-//					player = 0;
-//				}
-//				if (callCounter+1 == players.size()) {
-//					break;
-//				}
-//			}
-//			bank = 0;
-//
-//		}
-//		// TO DO
-//		// CserÃ©ljÃ¼nk vakot!
-//	}
-//
-//	private void setBlinds() {
-//		long newCach = players.get(0).getCash() - (limit / 2);
-//		long newCach2 = players.get(1).getCash() - limit;
-//		bank+=(limit + limit/2);
-//		players.get(0).setCash(newCach);
-//		players.get(1).setCash(newCach2);
-//	}
-//
-//	private void dealoutCards() {
-//		for (Player player : players) {
-//			Card card1 = new Card();
-//			Card card2 = new Card();
-//			player.setCard1(card1);
-//			player.setCard2(card2);
-//		}
-//
-//	}
-
 }

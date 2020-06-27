@@ -6,8 +6,8 @@ import java.util.Map;
 
 public class MenuTypes {
 	private Map<String, List<MenuPoint>> menus;
-	private final List<String> menuTypes = List.of("bejelentkezÃ©s", "jÃ¡tÃ©k indÃ­tÃ¡sa", "statisztika", "limitek",
-			"jÃ¡tÃ©k");
+	private final List<String> menuTypes = List.of("bejelentkezés", "játék indítása", "statisztika", "limitek",
+			"játék call nélkül", "játék check nélkül");
 
 	{
 		this.menus = new HashMap<>();
@@ -18,7 +18,9 @@ public class MenuTypes {
 				List.of(MenuPoint.TOP_10, MenuPoint.TOP_10_MONTH, MenuPoint.POKER_HANDS, MenuPoint.TO_PREVIOUS));
 		menus.put(menuTypes.get(3), List.of(MenuPoint.FIX_LIMIT, MenuPoint.NO_LIMIT, MenuPoint.POT_LIMIT));
 		menus.put(menuTypes.get(4),
-				List.of(MenuPoint.RULES, MenuPoint.CALL, MenuPoint.FOLD, MenuPoint.RAISE, MenuPoint.CHECK));
+				List.of(MenuPoint.RULES, MenuPoint.FOLD, MenuPoint.RAISE, MenuPoint.CHECK));
+		menus.put(menuTypes.get(5),
+				List.of(MenuPoint.RULES, MenuPoint.CALL, MenuPoint.FOLD, MenuPoint.RAISE));
 	}
 
 	public List<MenuPoint> getMenuList(String key) {

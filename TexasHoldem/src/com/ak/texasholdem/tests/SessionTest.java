@@ -9,19 +9,17 @@ import com.ak.texasholdem.player.Players;
 public class SessionTest {
 
 	public static void main(String[] args) {
-
+		System.out.println("game setup");
 		Board board = new Board();
 		Players players = new Players();
-		players.addPlayer(new Player("AAA", "", ""));
-		players.addPlayer(new Player("BBB", "", ""));
-		players.addPlayer(new Player("CCC", "", ""));
-		players.addPlayer(new Player("DDD", "", ""));
+		players.addPlayer(new Player("AAA", "", "", 5000));
+		players.addPlayer(new Player("BBB", "", "", 5000));
+		players.addPlayer(new Player("CCC", "", "", 5000));
+		players.addPlayer(new Player("DDD", "", "", 5000));
 
 		Deck deck = new Deck();
 		Session session = new Session(board, players, deck);
 		session.run();
-		// TODO Auto-generated method stub
-
+		System.out.println("game over");
 	}
-
 }

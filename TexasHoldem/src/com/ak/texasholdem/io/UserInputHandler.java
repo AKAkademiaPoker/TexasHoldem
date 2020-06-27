@@ -21,15 +21,13 @@ public class UserInputHandler {
 		int number = -1;
 		while (true) {
 			System.out.println(">");
-			String input = scanner.nextLine()
-					.trim();
+			String input = scanner.nextLine().trim();
 			String regex = "^[0-9]+$";
 			if (Pattern.matches(regex, input)) {
 				number = Integer.parseInt(input);
 				if (number >= lower && number <= upper) {
-					return Integer.parseInt(input);
+					return number;
 				}
-
 			}
 		}
 	}

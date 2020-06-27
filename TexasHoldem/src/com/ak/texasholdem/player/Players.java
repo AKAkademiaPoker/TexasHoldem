@@ -29,5 +29,11 @@ public class Players {
 	private boolean isPlayersFull() {
 		return players.size() >= PokerConstants.MAX_PLAYER;
 	}
+	
+	public void setAllNotChecked() {
+		for (Player player : players) {
+			player.setChecked(false);
+		}
+	}
 
 }

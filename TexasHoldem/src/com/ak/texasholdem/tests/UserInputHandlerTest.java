@@ -10,9 +10,9 @@ public class UserInputHandlerTest {
 		Scanner scanner = new Scanner(System.in);
 		UserInputHandler us = new UserInputHandler(scanner);
 
-		int i = us.getIntAmongTwoNumbs(1, 5);
+		int i = us.getIntAmongTwoNumbs(250, 5000);
+		
 		System.out.println("ok " + i);
-		// TODO Auto-generated method stub
 
 		scanner.close();
 	}
