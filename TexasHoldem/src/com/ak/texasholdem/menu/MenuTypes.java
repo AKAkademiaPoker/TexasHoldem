@@ -6,8 +6,8 @@ import java.util.Map;
 
 public class MenuTypes {
 	private Map<String, List<MenuPoint>> menus;
-	private final List<String> menuTypes = List.of("bejelentkezÈs", "j·tÈk indÌt·sa", "statisztika", "limitek",
-			"j·tÈk call nÈlk¸l", "j·tÈk check nÈlk¸l");
+	private final List<String> menuTypes = List.of("bejelentkez√©s", "j√°t√©k ind√≠t√°sa", "statisztika", "limitek",
+			"j√°t√©k call n√©lk√ºl", "j√°t√©k check n√©lk√ºl", "mutat");
 
 	{
 		this.menus = new HashMap<>();
@@ -17,10 +17,10 @@ public class MenuTypes {
 		menus.put(menuTypes.get(2),
 				List.of(MenuPoint.TOP_10, MenuPoint.TOP_10_MONTH, MenuPoint.POKER_HANDS, MenuPoint.TO_PREVIOUS));
 		menus.put(menuTypes.get(3), List.of(MenuPoint.FIX_LIMIT, MenuPoint.NO_LIMIT, MenuPoint.POT_LIMIT));
-		menus.put(menuTypes.get(4),
-				List.of(MenuPoint.RULES, MenuPoint.FOLD, MenuPoint.RAISE, MenuPoint.CHECK));
-		menus.put(menuTypes.get(5),
-				List.of(MenuPoint.RULES, MenuPoint.CALL, MenuPoint.FOLD, MenuPoint.RAISE));
+		menus.put(menuTypes.get(4), List.of(MenuPoint.RULES, MenuPoint.FOLD, MenuPoint.RAISE, MenuPoint.CHECK));
+		menus.put(menuTypes.get(5), List.of(MenuPoint.RULES, MenuPoint.CALL, MenuPoint.FOLD, MenuPoint.RAISE));
+		menus.put(menuTypes.get(6), List.of(MenuPoint.SHOW_CARDS, MenuPoint.HIDE_CARDS));
+
 	}
 
 	public List<MenuPoint> getMenuList(String key) {

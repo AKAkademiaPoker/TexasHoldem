@@ -1,25 +1,27 @@
 package com.ak.texasholdem.menu;
 
 public enum MenuPoint {
-	RULES("J·tÈkszab·lyok"),
-	LOGIN("BejelentkezÈs"),
-	SIGN_UP("Regisztr·ciÛ"),
-	DEPOSIT("BefizetÈs"),
-	PAYMENT("KifizetÈs"),
-	GAME_START("J·tÈk indÌt·sa"),
+	RULES("J√°t√©kszab√°lyok"),
+	LOGIN("Bejelentkez√©s"),
+	SIGN_UP("Regisztr√°ci√≥"),
+	DEPOSIT("Befizet√©s"),
+	PAYMENT("Kifizet√©s"),
+	GAME_START("J√°t√©k ind√≠t√°sa"),
 	HALL_OF_FRAME("Statisztika"),
 	TOP_10("Top 10"),
 	TOP_10_MONTH("Top 10 ebben a honapban"),
-	POKER_HANDS("PÛker kezek"),
+	POKER_HANDS("P√≥ker kezek"),
 	FIX_LIMIT("Fix limit"),
 	NO_LIMIT("No limit"),
 	POT_LIMIT("Pot limit"),
-	CALL("Tart·s"),
-	FOLD("Eldob·s"),
-	RAISE("EmelÈs"),
-	CHECK("Passzol·s"),
-	TO_PREVIOUS("Az elızı men¸hˆz"),
-	ERROR("Hib·s");
+	CALL("Tart√°s"),
+	FOLD("Eldob√°s"),
+	RAISE("Emel√©s"),
+	CHECK("Passzol√°s"),
+	TO_PREVIOUS("Az el≈ëz≈ë men√ºh√∂z"),
+	SHOW_CARDS("K√°ryt√°k megmutat√°sa"),
+	HIDE_CARDS("K√°rty√°k titokban tart√°sa"),
+	ERROR("Hib√°s");
 
 	private String onHUN;
 

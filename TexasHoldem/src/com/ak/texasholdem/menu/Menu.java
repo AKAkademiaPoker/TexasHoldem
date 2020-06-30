@@ -24,7 +24,7 @@ public class Menu {
 	}
 
 	public void print() {
-		System.out.println("Kérem, válasszon az alábbi menüpontok közül:");
+		System.out.println("KÃ©rem, vÃ¡lasszon az alÃ¡bbi menÃ¼pontok kÃ¶zÃ¼l:");
 		for (int i = 0; i < menuList.size(); i++) {
 			System.out.println((i + 1) + ". " + menuList.get(i)
 					.getOnHUN());
@@ -33,9 +33,10 @@ public class Menu {
 
 	public MenuPoint getMenuPoint(int input) {
 		int index = input - 1;
-		if (index >= 0 && input < menuList.size()) {
+		if (index >= 0 && index < menuList.size()) {
 			return menuList.get(index);
 		}
+		
 		return MenuPoint.ERROR;
 	}
 

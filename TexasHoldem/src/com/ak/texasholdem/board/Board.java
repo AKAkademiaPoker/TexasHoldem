@@ -30,4 +30,9 @@ public class Board {
 		visibleCards.removeAll(visibleCards);
 	}
 	
+	@Override
+	public String toString() {
+		return visibleCards.toString();
+	}
+	
 }
