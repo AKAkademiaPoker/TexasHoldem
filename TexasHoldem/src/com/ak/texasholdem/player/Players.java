@@ -17,9 +17,9 @@ public class Players {
 		return players;
 	}
 
-	public void addPlayer(Player player) {
+	public void addPlayer(User player) {
 		if (!isPlayersFull()) {
-			players.add(player);
+			players.add((Player) player);
 		} else {
 			// TODO: Exception: board is full...
 			System.out.println("The board is full. Try another one.");

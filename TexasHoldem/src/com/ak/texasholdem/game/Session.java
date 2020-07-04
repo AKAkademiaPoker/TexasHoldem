@@ -1,14 +1,13 @@
 package com.ak.texasholdem.game;
 
-import java.util.List;
 import java.util.Scanner;
 
 import com.ak.texasholdem.board.Board;
 import com.ak.texasholdem.cards.Deck;
+import com.ak.texasholdem.io.FileReader;
 import com.ak.texasholdem.io.UserInputHandler;
 import com.ak.texasholdem.menu.Menu;
 import com.ak.texasholdem.menu.MenuPoint;
-import com.ak.texasholdem.menu.MenuTypes;
 import com.ak.texasholdem.player.Player;
 import com.ak.texasholdem.player.Players;
 
@@ -17,17 +16,17 @@ public class Session {
 	private Board board;
 	private Players players;
 	private Deck deck;
-	
+
 	private int bigBlindIndex = 0;
 	private int smallBlindIndex = 1;
-	
+
 	private int minPot = 250;
 	private int bank = 0;
-	private int actualRaise = 0;
-	
+	private int actualRaise = minPot;
+
 	private boolean hasWinner;
 
-	private Menu menu = new Menu("játék call nélkül");
+	private Menu menu = new Menu("játék check nélkül");
 
 	public Session(Board board, Players players, Deck deck) {
 		this.board = board;
@@ -57,11 +56,14 @@ public class Session {
 				break;
 			}
 		}
-		// TODO: kis- és nagyvak + bank cash
-		// TODO: vakok forgatása
-		// TODO: szabályok
+		
+		
 		// TODO: kiértékelés (nyerő kombinációk enum/list) + kifizetés
-		// TODO: emelési limitek beállítása
+		// TODO: vakok forgatása
+		// TODO: külön Game class amiben fut egy sessionökből álló ciklus, amég vannak játékosok. 
+		// TODO: Game-ben: vakok, licitek, játékosok összeállítása
+		// TODO: Board is full, 2-10 Players
+		
 	}
 
 	private void addCards(int num) {
@@ -73,19 +75,30 @@ public class Session {
 	}
 
 	private void doRound() {
-		END: for (int i = players.getPlayers().size(); ; i++) {
+		END: for (int i = players.getPlayers().size();; i++) {
+			if (bank == minPot * 1.5) {
+				i++;
+			}
+			System.out.println("---------------------------------");
+			System.out.println();
+			System.out.println();
 			int index = i % players.getPlayers().size();
 			Player current = players.getPlayers().get(index);
 			System.out.println(current.toString());
 			System.out.println("Bankban lévő összeg: " + bank);
 			System.out.println(board);
+
+			if (onlyOneNotChecked() && actualRaise == current.getSessionPot()) {
+				menu = new Menu("játék call nélkül");
+			}
+
 			MenuPoint menuPoint = current.playerStep(scanner, menu);
 			System.out.println(menuPoint);
 
 			if (menuPoint.equals(MenuPoint.RULES)) {
-				// TODO: szabályok file-ból
-				System.out.println("Szabályok....");
+				new FileReader("res/shortrules.txt").printRules();
 				i--;
+				continue;
 			}
 
 			if (menuPoint.equals(MenuPoint.RAISE)) {
@@ -94,7 +107,6 @@ public class Session {
 
 			if (menuPoint.equals(MenuPoint.FOLD)) {
 				current.setInGame(false);
-				// TODO: elegánsabb megoldás!
 				current.setChecked(true);
 				if (!players.isMinTwoPlayerInGame()) {
 					endSession();
@@ -105,29 +117,33 @@ public class Session {
 			if (menuPoint.equals(MenuPoint.CHECK)) {
 				System.out.println("Passzol");
 				current.setChecked(true);
-				System.out.println(current.toString());
+
 				if (isEveryoneChecked()) {
 					break END;
 				}
 			}
+
 			if (menuPoint.equals(MenuPoint.CALL)) {
-				System.out.println(current.getSessionPot());
-				if (actualRaise > current.getSessionPot()) {
-					doCall(current);
-				}
+				doCall(current);
 				current.setChecked(true);
-				if (isEveryoneChecked()) {
-					break END;
-				}
 			}
 		}
+	}
+
+	private boolean onlyOneNotChecked() {
+		int counter = 0;
+		for (Player player : players.getPlayers()) {
+			if (!player.isChecked()) {
+				counter++;
+			}
+		}
+		return counter <= 1;
 	}
 
 	private void endSession() {
 		Player winner = getLastInGame();
 		winner.setCash(winner.getCash() + bank);
 		System.out.println(winner);
-		// meg akarja-e mutatni a kártyát
 		showCards(winner);
 		hasWinner = true;
 	}
@@ -141,8 +157,8 @@ public class Session {
 	}
 
 	// TODO: objektumot készíteni a wincon-okból., kiértékelés
+	// meghatározni, hogy kinek voltak a legmagasabb lapjai
 	private Player getWinner() {
-		// meghatározni, hogy kinek voltak a legmagasabb lapjai
 		if (true) {
 			return null;
 		}
@@ -165,8 +181,6 @@ public class Session {
 		current.setCash(current.getCash() - difference);
 		bank += difference;
 		current.setSessionPot(current.getSessionPot() + difference);
-		System.out.println(current.getSessionPot() + " session pot");
-		System.out.println(current.toString());
 	}
 
 	private void doRaise(Player current) {
@@ -193,8 +207,13 @@ public class Session {
 	}
 
 	private void blinds() {
-		players.getPlayers().get(smallBlindIndex).setSessionPot(minPot / 2);
 		players.getPlayers().get(bigBlindIndex).setSessionPot(minPot);
+		players.getPlayers().get(bigBlindIndex).setCash(players.getPlayers().get(bigBlindIndex).getCash() - minPot);
+		bank += minPot;
+		players.getPlayers().get(smallBlindIndex).setSessionPot(minPot / 2);
+		players.getPlayers().get(smallBlindIndex)
+				.setCash(players.getPlayers().get(smallBlindIndex).getCash() - (minPot / 2));
+		bank += (minPot / 2);
 
 	}
 

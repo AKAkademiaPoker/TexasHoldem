@@ -1,1 +1,125 @@
-ezek a szabályok
+Texas Hold’em is played using a standard 52 card deck, and between two to ten players. Big tournaments may include many hundreds of players but during any one hand, the player is only competing against others on his or her table.
+
+Before every hand, one player is designated the nominal “dealer”,
+identified by a marker known as the dealer button or “button”.
+This person does not actually deal the cards – especially not online,
+where it is done automatically – but the position of the dealer determines
+ which two players have to post the “blind” bets that get the action started.
+ 
+The two players to the left of the dealer must post these compulsory “blinds” –
+so called because they are placed before anyone even sees their cards. 
+The player on the dealer’s immediate left posts the “small blind” and
+the player one further seat round the table posts the “big blind”,
+which is usually twice the size of the small.
+
+In the illustration, the dealer is in seat five with the button 
+in front of him. The two seats to his left are “in the blinds”.
+
+After every hand is complete, the dealer button moves clockwise
+one position around the table, which means that players take turns
+to be the dealer, the small blind and the big blind.
+
+After the blinds have been posted, all players are dealt two 
+cards face down. These are known as “hole” cards, and can only 
+be seen and used by one player. By the end of the hand, 
+five more “community” cards may have been dealt, face up in 
+the middle of the table, which are available for all players to use.
+
+The first three of the community cards are exposed together 
+(known as the “flop”), then a fourth card (known as the “turn”) 
+is dealt individually, and then a fifth (known as the “river”) 
+is exposed. A betting round separates each deal.
+
+The aim of poker is to make the best five-card hand out of the seven available 
+– two in an individual’s hand and the five community cards.
+
+The Four Betting Rounds
+If a hand of poker is played all the way to its conclusion, 
+there will be four betting rounds – or four periods during which 
+players can commit their chips to the pot. A player can also “fold” 
+their cards and leave the action at any time (see below).
+
+A betting round must be concluded satisfactorily before the 
+remaining players see more cards and another betting round begins.
+
+
+Pre-Flop – The First Round of Betting
+The first betting round takes place before the first three community cards (the “flop”) are dealt. This action is described as “pre-flop” and at this stage players are wagering based solely on the strength of their two concealed “hole” cards.
+
+The player sitting to the left of the big blind acts first – a position known as “under the gun”. Players then act in turn, moving clockwise around the table.
+
+You have the following options when it is your turn to act:
+
+Fold: This means that you no longer want to play the hand, 
+and are throwing your cards away. You no longer have any 
+claim to the money in the pot, even if you paid one of the blinds.
+
+Call: This means that you want to play the hand by matching 
+the size of the current bet. Pre-flop, this will be at least 
+the size of the big blind, and may be greater if any other player has raised.
+
+Raise: This means that you want to raise the size of the current bet. 
+If nobody before you has made a raise, you can make a raise yourself.
+If you are sitting in the big blind and no else has raised before you, 
+you have the option to check. This means that you do not wish to commit 
+any more chips to the pot. You can only check pre-flop if you are in 
+the big blind and no one else raised.
+
+The betting round is complete when all players have either folded, 
+indicating they no longer wish to continue in the hand, 
+or committed the same amount of chips to the pot.
+
+
+The Flop – The Second Round of Betting
+After the first round of betting is complete, the first three community cards are dealt face up in the middle of the table. This is known as the “flop”.
+
+Another round of betting begins with the first player still with cards to the left of the dealer.
+
+If no one has bet, you have the option to check (ie, to move the action to the next player without committing any chips to the pot.) Otherwise you have the same options as you did pre-flop: fold, call or raise.
+
+Again, the betting round is complete when all players have either folded, indicating they no longer wish to continue in the hand, or committed the same amount of chips to the pot.
+
+The Turn – The Third Round of Betting
+When all bets have been made in the second betting round, 
+and at least two players still have cards, the fourth community card is dealt. 
+This is known as the “turn”. Another round of betting begins, 
+starting with the first player still in the hand to the left of the dealer. 
+Play progresses exactly as it did after the flop.
+
+The River – The Fourth Round of Betting
+When all bets have been made in the third round of betting, 
+the fifth and final community card is dealt. This is known as the “river”. 
+A final round of betting begins, again starting with the first player to 
+the left of the button.
+Any players still with cards go to a “showdown”.
+
+
+Showdown
+After the last round of betting is complete, each player must form the best 
+possible five-card poker hand, made from a combination of their two hole 
+cards and the five community cards.
+
+At this point, all players remaining must show their hands, 
+so that the best hand can be determined. The player who has 
+the highest ranked poker hand at showdown wins the pot.
+
+
+Example:
+
+In the example above, Player 1 has two pair: kings and queens, with a seven. 
+The five best cards available to him are the two kings on the flop, 
+the two queens (his own hole cards), and the seven. 
+(Remember all poker hands have five cards.)
+
+Player 2 has three of a kind. He has one king “in the hole” 
+which he matches with the two kings on the flop. 
+His other cards are the seven and the six, which were the turn and river.
+
+Three of a kind is better than two pair and so player Player 2 wins.
+
+If more than one player has the same winning hand, 
+the pot is split evenly among all the players with the winning hand.
+
+When the current hand is complete, 
+the dealer button is passed one position 
+to the left and the next hand begins.

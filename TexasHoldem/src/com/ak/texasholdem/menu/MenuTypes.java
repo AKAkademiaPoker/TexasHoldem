@@ -18,7 +18,7 @@ public class MenuTypes {
 				List.of(MenuPoint.TOP_10, MenuPoint.TOP_10_MONTH, MenuPoint.POKER_HANDS, MenuPoint.TO_PREVIOUS));
 		menus.put(menuTypes.get(3), List.of(MenuPoint.FIX_LIMIT, MenuPoint.NO_LIMIT, MenuPoint.POT_LIMIT));
 		menus.put(menuTypes.get(4), List.of(MenuPoint.RULES, MenuPoint.FOLD, MenuPoint.RAISE, MenuPoint.CHECK));
-		menus.put(menuTypes.get(5), List.of(MenuPoint.RULES, MenuPoint.CALL, MenuPoint.FOLD, MenuPoint.RAISE));
+		menus.put(menuTypes.get(5), List.of(MenuPoint.RULES, MenuPoint.FOLD, MenuPoint.RAISE, MenuPoint.CALL));
 		menus.put(menuTypes.get(6), List.of(MenuPoint.SHOW_CARDS, MenuPoint.HIDE_CARDS));
 
 	}

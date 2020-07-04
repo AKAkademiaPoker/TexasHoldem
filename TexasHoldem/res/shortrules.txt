@@ -1,0 +1,45 @@
+TEXAS HOLD’EM RULES:
+Texas Hold’em Poker is a community card game that can be played anywhere from 2-10 players.
+
+One player acts as dealer. This position is called the button and 
+it rotates clockwise after every hand.
+
+The two players to the left of the dealer are called the small blind 
+and the big blind, respectively.
+
+These two positions require forced bets of a pre-determined amount 
+and are the only players to put money in the pot before the cards are dealt 
+(if no ante in place).
+
+Every player then receives two cards face down. 
+These are called “hole” cards.
+
+Once all hole cards have been dealt, the first betting round begins 
+with the player sitting immediately to the left of the big blind. 
+This player can fold, call (match the amount of the big blind) or raise.
+
+Betting then continues clockwise, with each player having the option to fold, 
+call the amount of the highest bet before them, bet or raise.
+
+When the first betting round is completed, three community 
+cards are flipped face up on the table. This is called the flop.
+
+The betting resumes, clockwise, with each player having the option to check 
+(if no bet is in front of them), bet (or raise if a bet is before them), 
+call or fold.
+
+When the second round of betting is finished, 
+a fourth community card is flipped face up on the table. 
+This is called the turn.
+
+The third round of betting commences with the first remaining player 
+sitting to the left of the button.
+
+When the third round of betting is over, a fifth community card is 
+flipped face up on the table. This is called the river.
+
+The fourth round of betting starts with the first remaining player 
+seated to the left of the button. The betting continues to move clockwise.
+
+
+

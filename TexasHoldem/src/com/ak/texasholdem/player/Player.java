@@ -7,59 +7,21 @@ import com.ak.texasholdem.io.UserInputHandler;
 import com.ak.texasholdem.menu.Menu;
 import com.ak.texasholdem.menu.MenuPoint;
 
-public class Player {
+public class Player extends User {
 
 	// TODO remove to another subclass
-	private String nickname;
-	private String userName;
-	private String password;
-	private int id;
-
-	private int cash;
 	private int sessionPot;
 	private Card card1;
 	private Card card2;
 	private boolean isInGame;
 	private boolean isChecked = false;
 
-	public Player(String nickname, String userName, String password, int cash) {
+	public Player() {
 		super();
-		this.nickname = nickname;
-		this.userName = userName;
-		this.password = password;
-		this.cash = cash;
 	}
 
-	public String getNickname() {
-		return nickname;
-	}
-
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public int getCash() {
-		return cash;
-	}
-
-	public void setCash(int cash) {
-		this.cash = cash;
+	public Player(String nickname, String userName, String password, int cash) {
+		super(nickname, userName, password, cash);
 	}
 
 	public Card getCard1() {
@@ -76,10 +38,6 @@ public class Player {
 
 	public void setCard2(Card card2) {
 		this.card2 = card2;
-	}
-
-	public int getId() {
-		return id;
 	}
 
 	public boolean isInGame() {
@@ -111,9 +69,10 @@ public class Player {
 		int input = new UserInputHandler(scanner).getIntAmongTwoNumbs(1, menu.numberOfOptions());
 		return menu.getMenuPoint(input);
 	}
+
 	@Override
 	public String toString() {
-		return nickname + " " + cash;
+		return super.getNickname() + " " + super.getCash() + " " + card1.toString() + " " + card2.toString();
 	}
 
 }

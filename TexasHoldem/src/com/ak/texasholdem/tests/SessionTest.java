@@ -5,6 +5,7 @@ import com.ak.texasholdem.cards.Deck;
 import com.ak.texasholdem.game.Session;
 import com.ak.texasholdem.player.Player;
 import com.ak.texasholdem.player.Players;
+import com.ak.texasholdem.player.User;
 
 public class SessionTest {
 
