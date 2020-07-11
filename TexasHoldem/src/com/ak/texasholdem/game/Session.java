@@ -35,7 +35,7 @@ public class Session {
 	}
 
 	public void run() {
-		readyToPlay();
+		players.readyToPlay();
 		blinds();
 		dealing();
 		CLOSE: for (int i = 0; i < 4; i++) {
@@ -56,14 +56,14 @@ public class Session {
 				break;
 			}
 		}
-		
-		
+
 		// TODO: kiértékelés (nyerő kombinációk enum/list) + kifizetés
 		// TODO: vakok forgatása
-		// TODO: külön Game class amiben fut egy sessionökből álló ciklus, amég vannak játékosok. 
+		// TODO: külön Game class amiben fut egy sessionökből álló ciklus, amég vannak
+		// játékosok.
 		// TODO: Game-ben: vakok, licitek, játékosok összeállítása
 		// TODO: Board is full, 2-10 Players
-		
+
 	}
 
 	private void addCards(int num) {
@@ -75,20 +75,23 @@ public class Session {
 	}
 
 	private void doRound() {
-		END: for (int i = players.getPlayers().size();; i++) {
+		END: for (int i = players.getPlayers()
+				.size();; i++) {
 			if (bank == minPot * 1.5) {
 				i++;
 			}
 			System.out.println("---------------------------------");
 			System.out.println();
 			System.out.println();
-			int index = i % players.getPlayers().size();
-			Player current = players.getPlayers().get(index);
+			int index = i % players.getPlayers()
+					.size();
+			Player current = players.getPlayers()
+					.get(index);
 			System.out.println(current.toString());
 			System.out.println("Bankban lévő összeg: " + bank);
 			System.out.println(board);
 
-			if (onlyOneNotChecked() && actualRaise == current.getSessionPot()) {
+			if (players.onlyOneNotChecked() && actualRaise == current.getSessionPot()) {
 				menu = new Menu("játék call nélkül");
 			}
 
@@ -118,7 +121,7 @@ public class Session {
 				System.out.println("Passzol");
 				current.setChecked(true);
 
-				if (isEveryoneChecked()) {
+				if (players.isEveryoneChecked()) {
 					break END;
 				}
 			}
@@ -130,30 +133,12 @@ public class Session {
 		}
 	}
 
-	private boolean onlyOneNotChecked() {
-		int counter = 0;
-		for (Player player : players.getPlayers()) {
-			if (!player.isChecked()) {
-				counter++;
-			}
-		}
-		return counter <= 1;
-	}
-
 	private void endSession() {
-		Player winner = getLastInGame();
+		Player winner = players.getLastInGame();
 		winner.setCash(winner.getCash() + bank);
 		System.out.println(winner);
-		showCards(winner);
+		winner.showCards(scanner);
 		hasWinner = true;
-	}
-
-	private void showCards(Player winner) {
-		Menu menu = new Menu("mutat");
-		MenuPoint menuPoint = winner.playerStep(scanner, menu);
-		if (menuPoint.equals(MenuPoint.SHOW_CARDS)) {
-			System.out.println(winner.getCard1() + " " + winner.getCard2());
-		}
 	}
 
 	// TODO: objektumot készíteni a wincon-okból., kiértékelés
@@ -163,17 +148,6 @@ public class Session {
 			return null;
 		}
 		return null;
-	}
-
-	private Player getLastInGame() {
-
-		for (int i = 0; i < players.getPlayers().size(); i++) {
-			if (players.getPlayers().get(i).isInGame()) {
-				return players.getPlayers().get(i);
-			}
-		}
-		return null;
-
 	}
 
 	private void doCall(Player current) {
@@ -197,31 +171,26 @@ public class Session {
 		menu = new Menu("játék check nélkül");
 	}
 
-	private boolean isEveryoneChecked() {
-		for (Player player : players.getPlayers()) {
-			if (!player.isChecked()) {
-				return false;
-			}
-		}
-		return true;
-	}
-
 	private void blinds() {
-		players.getPlayers().get(bigBlindIndex).setSessionPot(minPot);
-		players.getPlayers().get(bigBlindIndex).setCash(players.getPlayers().get(bigBlindIndex).getCash() - minPot);
+		players.getPlayers()
+				.get(bigBlindIndex)
+				.setSessionPot(minPot);
+		players.getPlayers()
+				.get(bigBlindIndex)
+				.setCash(players.getPlayers()
+						.get(bigBlindIndex)
+						.getCash() - minPot);
 		bank += minPot;
-		players.getPlayers().get(smallBlindIndex).setSessionPot(minPot / 2);
-		players.getPlayers().get(smallBlindIndex)
-				.setCash(players.getPlayers().get(smallBlindIndex).getCash() - (minPot / 2));
+		players.getPlayers()
+				.get(smallBlindIndex)
+				.setSessionPot(minPot / 2);
+		players.getPlayers()
+				.get(smallBlindIndex)
+				.setCash(players.getPlayers()
+						.get(smallBlindIndex)
+						.getCash() - (minPot / 2));
 		bank += (minPot / 2);
 
-	}
-
-	private void readyToPlay() {
-		for (Player player : players.getPlayers()) {
-			player.setInGame(true);
-
-		}
 	}
 
 	private void dealing() {

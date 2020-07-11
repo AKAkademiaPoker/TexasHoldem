@@ -70,6 +70,14 @@ public class Player extends User {
 		return menu.getMenuPoint(input);
 	}
 
+	public void showCards(Scanner scanner) {
+		Menu menu = new Menu("mutat");
+		MenuPoint menuPoint = playerStep(scanner, menu);
+		if (menuPoint.equals(MenuPoint.SHOW_CARDS)) {
+			System.out.println(card1 + " " + card2);
+		}
+	}
+
 	@Override
 	public String toString() {
 		return super.getNickname() + " " + super.getCash() + " " + card1.toString() + " " + card2.toString();

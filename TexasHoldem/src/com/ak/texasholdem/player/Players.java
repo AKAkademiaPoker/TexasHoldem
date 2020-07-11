@@ -48,11 +48,48 @@ public class Players {
 		}
 		return false;
 	}
-	
+
 	public void setChecks() {
 		for (Player player : players) {
 			player.setChecked(false);
 		}
 	}
 
+	public void readyToPlay() {
+		for (Player player : players) {
+			player.setInGame(true);
+
+		}
+	}
+
+	public Player getLastInGame() {
+
+		for (int i = 0; i < players.size(); i++) {
+			if (players.get(i)
+					.isInGame()) {
+				return players.get(i);
+			}
+		}
+		return null;
+
+	}
+
+	public boolean isEveryoneChecked() {
+		for (Player player : players) {
+			if (!player.isChecked()) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public boolean onlyOneNotChecked() {
+		int counter = 0;
+		for (Player player : players) {
+			if (!player.isChecked()) {
+				counter++;
+			}
+		}
+		return counter <= 1;
+	}
 }
