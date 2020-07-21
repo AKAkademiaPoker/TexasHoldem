@@ -13,18 +13,17 @@ public class RoyalFlushSearcher extends HandTypeSearcher {
 	@Override
 	public HandTypes search() {
 		List<Card> bestCards = straightSearcher(14, 10);
-
+		
 		for (int i = 1; i < bestCards.size(); i++) {
-			if (!bestCards.get(i)
+			if (!bestCards.get(0)
 					.getSuit()
-					.equals(bestCards.get(0)
+					.equals(bestCards.get(i)
 							.getSuit())) {
 				return null;
 			}
 		}
-		super.bestCards=bestCards;
+		super.bestCards = bestCards;
 		return HandTypes.ROYAL_FLUSH;
 	}
-
 
 }
