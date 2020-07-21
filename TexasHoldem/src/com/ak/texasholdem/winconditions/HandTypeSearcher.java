@@ -61,5 +61,4 @@ public abstract class HandTypeSearcher {
 
 	public abstract HandTypes search();
 
-//	public abstract List<Card> bestCards();
 }
