@@ -21,7 +21,11 @@ public class StraightSearcher extends HandTypeSearcher {
 		boolean flag = false;
 		for (int i = 0; i < cards.size() - 5; i++) {
 			for (int j = 0; j < 4; j++) {
-				if (cards.get(j).getRank().getRankValue() != cards.get(j + 1).getRank().getRankValue() + 1) {
+				if (cards.get(j)
+						.getRank()
+						.getRankValue() != cards.get(j + 1)
+								.getRank()
+								.getRankValue() + 1) {
 					flag = false;
 					break;
 				}
