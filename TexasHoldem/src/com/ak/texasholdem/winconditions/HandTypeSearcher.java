@@ -40,5 +40,4 @@ public abstract class HandTypeSearcher {
 	
 	
 
-//	public abstract List<Card> bestCards();
 }
