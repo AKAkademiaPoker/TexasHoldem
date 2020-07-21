@@ -4,7 +4,7 @@ public enum HandTypes {
 	HIGH_CARD,
 	PAIR,
 	TWO_PAIRS,
-	SET,
+	TRIPLE,
 	STRAIGHT,
 	FLUSH,
 	FULL_HOUSE,
