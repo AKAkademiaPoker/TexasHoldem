@@ -22,7 +22,7 @@ public class HandSearcherTest {
 		testCards.add(new Card(Suit.DIAMONDS, Rank.NINE));
 		testCards.add(new Card(Suit.CLUBS, Rank.ACE));
 		testCards.add(new Card(Suit.CLUBS, Rank.NINE));
-		testCards.add(new Card(Suit.DIAMONDS, Rank.KING));
+		testCards.add(new Card(Suit.HEARTS, Rank.EIGHT));
 		testCards.add(new Card(Suit.DIAMONDS, Rank.QUEEN));
 		testCards.add(new Card(Suit.DIAMONDS, Rank.JACK));
 		testCards.add(new Card(Suit.DIAMONDS, Rank.TEN));

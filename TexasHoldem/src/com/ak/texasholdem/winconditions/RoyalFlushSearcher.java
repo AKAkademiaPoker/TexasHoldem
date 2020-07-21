@@ -16,9 +16,16 @@ public class RoyalFlushSearcher extends HandTypeSearcher {
 	public HandTypes search() {
 		List<Card> temp = new ArrayList<>();
 		for (Card card2 : cards) {
-			if (card2.getRank().equals(Rank.ACE) || card2.getRank().equals(Rank.KING)
-					|| card2.getRank().equals(Rank.QUEEN) || card2.getRank().equals(Rank.JACK)
-					|| card2.getRank().equals(Rank.TEN)) {
+			if (card2.getRank()
+					.equals(Rank.ACE)
+					|| card2.getRank()
+							.equals(Rank.KING)
+					|| card2.getRank()
+							.equals(Rank.QUEEN)
+					|| card2.getRank()
+							.equals(Rank.JACK)
+					|| card2.getRank()
+							.equals(Rank.TEN)) {
 				temp.add(card2);
 			}
 		}

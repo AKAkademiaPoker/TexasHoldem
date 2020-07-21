@@ -30,7 +30,6 @@ public class StraightFlushSearcher extends HandTypeSearcher {
 		System.out.println(sfs);
 		if (sfs.size() >= 5) {
 			HandTypeSearcher searcher = new StraightSearcher(sfs);
-//			System.out.println("search: " + searcher.search());
 			if (HandTypes.STRAIGHT.equals(searcher.search())) {
 				return HandTypes.STRAIGHT_FLUSH;
 			}
