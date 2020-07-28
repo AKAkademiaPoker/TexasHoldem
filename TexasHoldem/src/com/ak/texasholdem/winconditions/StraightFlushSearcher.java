@@ -14,7 +14,6 @@ public class StraightFlushSearcher extends HandTypeSearcher {
 
 	public StraightFlushSearcher(List<Card> cards) {
 		super(cards);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -31,6 +30,7 @@ public class StraightFlushSearcher extends HandTypeSearcher {
 		if (sfs.size() >= 5) {
 			HandTypeSearcher searcher = new StraightSearcher(sfs);
 			if (HandTypes.STRAIGHT.equals(searcher.search())) {
+				setBestCards(sfs);
 				return HandTypes.STRAIGHT_FLUSH;
 			}
 		}
@@ -38,7 +38,12 @@ public class StraightFlushSearcher extends HandTypeSearcher {
 
 	}
 
-	private Suit getMostFrequentSuit() {
+	private void setBestCards(List<Card> sfs) {
+		bestCards = new ArrayList<>();
+		bestCards = sfs.stream().limit(5).collect(Collectors.toList());
+	}
+
+	protected Suit getMostFrequentSuit() {
 		int counter = 0;
 		Suit suit = null;
 		for (int i = 0; i < Suit.values().length; i++) {

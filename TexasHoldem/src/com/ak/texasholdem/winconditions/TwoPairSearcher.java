@@ -8,7 +8,6 @@ public class TwoPairSearcher extends HandTypeSearcher{
 
 	public TwoPairSearcher(List<Card> cards) {
 		super(cards);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

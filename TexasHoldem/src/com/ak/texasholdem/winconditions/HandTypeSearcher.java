@@ -19,7 +19,7 @@ public abstract class HandTypeSearcher {
 	}
 
 	public void sortCardsByRank(List<Card> cards) {
-		Comparator c = new Comparator<Card>() {
+		Comparator<Card> c = new Comparator<Card>() {
 
 			@Override
 			public int compare(Card card1, Card card2) {
@@ -40,10 +40,6 @@ public abstract class HandTypeSearcher {
 		Collections.sort(cards, c);
 	}
 
-	public List<Card> getBestCards() {
-		return bestCards;
-	}
-
 	protected boolean hasSpecificRank(Rank rank) {
 		for (Card card : cards) {
 			if (card.getRank()
@@ -52,6 +48,15 @@ public abstract class HandTypeSearcher {
 			}
 		}
 		return false;
+	}
+	
+	protected Card getFirstCardByRank(Rank rank) {
+		for (Card card : cards) {
+			if(card.getRank().equals(rank)) {
+				return card;
+			}
+		}
+		return null;
 	}
 
 	protected int countSuits(Suit suit) {
@@ -66,5 +71,9 @@ public abstract class HandTypeSearcher {
 	}
 
 	public abstract HandTypes search();
+	
+	public List<Card> getBestCards(){
+		return bestCards;
+	}
 
 }

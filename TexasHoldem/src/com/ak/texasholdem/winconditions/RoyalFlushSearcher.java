@@ -5,8 +5,9 @@ import java.util.List;
 
 import com.ak.texasholdem.cards.Card;
 import com.ak.texasholdem.cards.Rank;
+import com.ak.texasholdem.cards.Suit;
 
-public class RoyalFlushSearcher extends HandTypeSearcher {
+public class RoyalFlushSearcher extends StraightFlushSearcher {
 
 	public RoyalFlushSearcher(List<Card> cards) {
 		super(cards);
@@ -32,10 +33,21 @@ public class RoyalFlushSearcher extends HandTypeSearcher {
 		HandTypeSearcher fsc = new FlushSearch(temp);
 		if (temp.size() >= 5) {
 			if (HandTypes.FLUSH.equals(fsc.search())) {
+				setBestCards();
 				return HandTypes.ROYAL_FLUSH;
 			}
 		}
 		return null;
+	}
+	
+	private void setBestCards() {
+		bestCards = new ArrayList<>();
+		Suit suit = getMostFrequentSuit();
+		bestCards.add(new Card(suit, Rank.ACE));
+		bestCards.add(new Card(suit, Rank.KING));
+		bestCards.add(new Card(suit, Rank.QUEEN));
+		bestCards.add(new Card(suit, Rank.JACK));
+		bestCards.add(new Card(suit, Rank.TEN));
 	}
 
 }

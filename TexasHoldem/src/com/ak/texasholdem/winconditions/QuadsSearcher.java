@@ -17,4 +17,9 @@ public class QuadsSearcher extends HandTypeSearcher{
 		return null;
 	}
 
+	public void setBestCards(int i) {
+		// TODO
+		
+	}
+
 }
