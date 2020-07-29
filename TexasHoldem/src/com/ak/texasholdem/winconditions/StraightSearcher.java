@@ -1,12 +1,17 @@
 package com.ak.texasholdem.winconditions;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import com.ak.texasholdem.cards.Card;
 import com.ak.texasholdem.cards.Rank;
 
 public class StraightSearcher extends HandTypeSearcher {
+
+	private List<Card> cardsList;
 
 	public StraightSearcher(List<Card> cards) {
 		super(cards);
@@ -20,12 +25,16 @@ public class StraightSearcher extends HandTypeSearcher {
 			return HandTypes.STRAIGHT;
 		}
 
+		Set<Card> cardSet = new TreeSet<>(Card.getComparatorByRankValue());
+		cardSet.addAll(cards);
+		cardsList = new ArrayList<>(cardSet);
+
 		boolean flag = false;
-		for (int i = 0; i < cards.size() - 4; i++) {
+		for (int i = 0; i < cardsList.size() - 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				if (cards.get(j)
+				if (cardsList.get(j + i)
 						.getRank()
-						.getRankValue() != cards.get(j + 1)
+						.getRankValue() != cardsList.get(j + i + 1)
 								.getRank()
 								.getRankValue() + 1) {
 					flag = false;
@@ -41,7 +50,7 @@ public class StraightSearcher extends HandTypeSearcher {
 
 		return null;
 	}
-	
+
 	private void setBestCards() {
 		bestCards = new ArrayList<>();
 		bestCards.add(getFirstCardByRank(Rank.FIVE));
@@ -50,12 +59,16 @@ public class StraightSearcher extends HandTypeSearcher {
 		bestCards.add(getFirstCardByRank(Rank.TWO));
 		bestCards.add(getFirstCardByRank(Rank.ACE));
 	}
-	
+
 	private void setBestCards(int index) {
+
 		bestCards = new ArrayList<>();
-		Card firstCard = cards.get(index);
-		bestCards.add(firstCard);
-		
+
+		for (int i = index; i < cardsList.size(); i++) {
+			if (bestCards.size() < 5) {
+				bestCards.add(cardsList.get(i));
+			}
+		}
 	}
 
 }

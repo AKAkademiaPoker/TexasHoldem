@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 import com.ak.texasholdem.cards.Card;
 import com.ak.texasholdem.cards.Suit;
 
-public class StraightFlushSearcher extends HandTypeSearcher {
+public class StraightFlushSearcher extends FlushSearch {
 
 	public StraightFlushSearcher(List<Card> cards) {
 		super(cards);
@@ -43,14 +43,5 @@ public class StraightFlushSearcher extends HandTypeSearcher {
 		bestCards = sfs.stream().limit(5).collect(Collectors.toList());
 	}
 
-	protected Suit getMostFrequentSuit() {
-		int counter = 0;
-		Suit suit = null;
-		for (int i = 0; i < Suit.values().length; i++) {
-			if (counter < countSuits(Suit.values()[i])) {
-				suit = Suit.values()[i];
-			}
-		}
-		return suit;
-	}
+
 }

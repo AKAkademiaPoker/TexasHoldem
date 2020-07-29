@@ -1,25 +1,34 @@
 package com.ak.texasholdem.winconditions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.ak.texasholdem.cards.Card;
+import com.ak.texasholdem.cards.Rank;
 
-public class QuadsSearcher extends HandTypeSearcher{
+public class QuadsSearcher extends HandTypeSearcher {
 
 	public QuadsSearcher(List<Card> cards) {
 		super(cards);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public HandTypes search() {
-		// TODO Auto-generated method stub
+		Rank rank = getMostFrequentRank();
+		if (countRanks(rank) == 4) {
+			setBestCards(rank);
+			return HandTypes.FOUR_OF_A_KIND;
+		}
 		return null;
 	}
 
-	public void setBestCards(int i) {
-		// TODO
-		
+	private void setBestCards(Rank rank) {
+		bestCards = new ArrayList<>();
+		for (Card card : cards) {
+			if (rank.equals(card.getRank())) {
+				bestCards.add(card);
+			}
+		}
 	}
 
 }

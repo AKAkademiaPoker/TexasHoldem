@@ -49,10 +49,11 @@ public abstract class HandTypeSearcher {
 		}
 		return false;
 	}
-	
+
 	protected Card getFirstCardByRank(Rank rank) {
 		for (Card card : cards) {
-			if(card.getRank().equals(rank)) {
+			if (card.getRank()
+					.equals(rank)) {
 				return card;
 			}
 		}
@@ -70,9 +71,32 @@ public abstract class HandTypeSearcher {
 		return counter;
 	}
 
+	protected int countRanks(Rank rank) {
+		int counter = 0;
+		for (Card card : cards) {
+			if (card.getRank()
+					.equals(rank)) {
+				counter++;
+			}
+		}
+		return counter;
+	}
+
+	protected Rank getMostFrequentRank() {
+		int counter = 0;
+		Rank rank = null;
+		for (int i = 0; i < Rank.values().length; i++) {
+			if (counter < countRanks(Rank.values()[i])) {
+				rank = Rank.values()[i];
+				counter++;
+			}
+		}
+		return rank;
+	}
+
 	public abstract HandTypes search();
-	
-	public List<Card> getBestCards(){
+
+	public List<Card> getBestCards() {
 		return bestCards;
 	}
 
