@@ -1,11 +1,13 @@
 package com.ak.texasholdem.player;
 
+import java.util.List;
 import java.util.Scanner;
 
 import com.ak.texasholdem.cards.Card;
 import com.ak.texasholdem.io.UserInputHandler;
 import com.ak.texasholdem.menu.Menu;
 import com.ak.texasholdem.menu.MenuPoint;
+import com.ak.texasholdem.winconditions.HandTypes;
 
 public class Player extends User {
 
@@ -15,6 +17,25 @@ public class Player extends User {
 	private Card card2;
 	private boolean isInGame;
 	private boolean isChecked = false;
+	
+	private HandTypes bestHandType;
+	private List<Card> bestCards;
+
+	public HandTypes getBestHandType() {
+		return bestHandType;
+	}
+
+	public void setBestHandType(HandTypes bestHandType) {
+		this.bestHandType = bestHandType;
+	}
+
+	public List<Card> getBestCards() {
+		return bestCards;
+	}
+
+	public void setBestCards(List<Card> bestCards) {
+		this.bestCards = bestCards;
+	}
 
 	public Player() {
 		super();
@@ -48,7 +69,7 @@ public class Player extends User {
 		this.isInGame = isInGame;
 	}
 
-	public boolean isChecked() {
+	public boolean getIsChecked() {
 		return isChecked;
 	}
 

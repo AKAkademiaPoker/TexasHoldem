@@ -10,6 +10,7 @@ import com.ak.texasholdem.menu.Menu;
 import com.ak.texasholdem.menu.MenuPoint;
 import com.ak.texasholdem.player.Player;
 import com.ak.texasholdem.player.Players;
+import com.ak.texasholdem.winconditions.ResultSearcher;
 
 public class Session {
 	private Scanner scanner = new Scanner(System.in);
@@ -17,8 +18,8 @@ public class Session {
 	private Players players;
 	private Deck deck;
 
-	private int bigBlindIndex = 0;
-	private int smallBlindIndex = 1;
+	private int bigBlindIndex = 1;
+	private int smallBlindIndex = 0;
 
 	private int minPot = 250;
 	private int bank = 0;
@@ -40,7 +41,11 @@ public class Session {
 		dealing();
 		CLOSE: for (int i = 0; i < 4; i++) {
 			System.out.println("Round :" + (i + 1) + "----------");
-			players.setChecks();
+			for (Player player : players.getPlayers()) {
+				if(player.isInGame()) {
+					player.setChecked(false);
+				}
+			}
 			doRound();
 			if (hasWinner) {
 				break CLOSE;
@@ -56,15 +61,19 @@ public class Session {
 				break;
 			}
 		}
-
-		// TODO: kiértékelés (nyerő kombinációk enum/list) + kifizetés
-		// TODO: vakok forgatása
-		// TODO: külön Game class amiben fut egy sessionökből álló ciklus, amég vannak
-		// játékosok.
-		// TODO: Game-ben: vakok, licitek, játékosok összeállítása
-		// TODO: Board is full, 2-10 Players
-
+		ResultSearcher rs = new ResultSearcher(board.getVisibleCards(), players.getPlayers());
+		rs.doSearch();
+		for (Player player : players.getPlayers()) {
+			System.out.println(player.getNickname() + player.getBestCards() + player.getBestHandType());
+			
+		}
 	}
+	// TODO: kiértékelés (nyerő kombinációk enum/list) + kifizetés
+	// TODO: vakok forgatása
+	// TODO: külön Game class amiben fut egy sessionökből álló ciklus, amég vannak
+	// játékosok.
+	// TODO: Game-ben: vakok, licitek, játékosok összeállítása
+	// TODO: Board is full, 2-10 Players
 
 	private void addCards(int num) {
 		board.addBurnedCard(deck.getCard());
@@ -77,12 +86,12 @@ public class Session {
 	private void doRound() {
 		END: for (int i = players.getPlayers()
 				.size();; i++) {
-			if (bank == minPot * 1.5) {
-				i++;
-			}
+//			if (bank == minPot * 1.5) {
+//				i++;
+//			}
 			System.out.println("---------------------------------");
-			System.out.println();
-			System.out.println();
+//			System.out.println();
+//			System.out.println();
 			int index = i % players.getPlayers()
 					.size();
 			Player current = players.getPlayers()
@@ -121,14 +130,14 @@ public class Session {
 				System.out.println("Passzol");
 				current.setChecked(true);
 
-				if (players.isEveryoneChecked()) {
-					break END;
-				}
 			}
 
 			if (menuPoint.equals(MenuPoint.CALL)) {
 				doCall(current);
 				current.setChecked(true);
+			}
+			if (players.isEveryoneChecked()) {
+				break END;
 			}
 		}
 	}
@@ -136,7 +145,7 @@ public class Session {
 	private void endSession() {
 		Player winner = players.getLastInGame();
 		winner.setCash(winner.getCash() + bank);
-		System.out.println(winner);
+//		System.out.println(winner);
 		winner.showCards(scanner);
 		hasWinner = true;
 	}

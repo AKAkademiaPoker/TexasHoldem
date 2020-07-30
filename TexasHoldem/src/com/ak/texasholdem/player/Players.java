@@ -76,7 +76,7 @@ public class Players {
 
 	public boolean isEveryoneChecked() {
 		for (Player player : players) {
-			if (!player.isChecked()) {
+			if (!player.getIsChecked()) {
 				return false;
 			}
 		}
@@ -86,7 +86,7 @@ public class Players {
 	public boolean onlyOneNotChecked() {
 		int counter = 0;
 		for (Player player : players) {
-			if (!player.isChecked()) {
+			if (!player.getIsChecked()) {
 				counter++;
 			}
 		}

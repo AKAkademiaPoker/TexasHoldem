@@ -26,7 +26,6 @@ public class StraightFlushSearcher extends FlushSearch {
 				sfs = cards.stream().filter(card -> card.getSuit().equals(suit)).collect(Collectors.toList());
 			}
 		}
-		System.out.println(sfs);
 		if (sfs.size() >= 5) {
 			HandTypeSearcher searcher = new StraightSearcher(sfs);
 			if (HandTypes.STRAIGHT.equals(searcher.search())) {
@@ -42,6 +41,5 @@ public class StraightFlushSearcher extends FlushSearch {
 		bestCards = new ArrayList<>();
 		bestCards = sfs.stream().limit(5).collect(Collectors.toList());
 	}
-
 
 }

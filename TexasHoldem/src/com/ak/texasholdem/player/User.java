@@ -29,19 +29,19 @@ public class User {
 		this.nickname = nickname;
 	}
 
-	public String getUserName() {
+	protected String getUserName() {
 		return userName;
 	}
 
-	public void setUserName(String userName) {
+	protected void setUserName(String userName) {
 		this.userName = userName;
 	}
 
-	public String getPassword() {
+	protected String getPassword() {
 		return password;
 	}
 
-	public void setPassword(String password) {
+	protected void setPassword(String password) {
 		this.password = password;
 	}
 
@@ -56,7 +56,7 @@ public class User {
 	public int getId() {
 		return id;
 	}
-
+	//TODO: kideríteni mi ez!
 	public void addPlayer(Player player) {
 
 	}
