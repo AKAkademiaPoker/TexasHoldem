@@ -88,7 +88,7 @@ public abstract class HandTypeSearcher {
 		for (int i = 0; i < Rank.values().length; i++) {
 			if (counter < countRanks(Rank.values()[i])) {
 				rank = Rank.values()[i];
-				counter++;
+				counter = countRanks(Rank.values()[i]);
 			}
 		}
 		return rank;

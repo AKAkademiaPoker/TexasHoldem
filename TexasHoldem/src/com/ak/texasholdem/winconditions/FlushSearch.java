@@ -18,6 +18,7 @@ public class FlushSearch extends HandTypeSearcher {
 		for (int i = 0; i < Suit.values().length; i++) {
 			if (counter < countSuits(Suit.values()[i])) {
 				suit = Suit.values()[i];
+				counter = countSuits(Suit.values()[i]);
 			}
 		}
 		return suit;
