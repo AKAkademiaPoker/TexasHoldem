@@ -7,8 +7,8 @@ import com.ak.texasholdem.cards.Card;
 
 public class PairSearcher extends HandTypeSearcher {
 
-	public PairSearcher(List<Card> cards) {
-		super(cards);
+	public PairSearcher(List<Card> cardsOnBoard, List<Card> cardsInHand) {
+		super(cardsOnBoard, cardsInHand);
 	}
 
 	@Override
@@ -23,10 +23,14 @@ public class PairSearcher extends HandTypeSearcher {
 		return null;
 	}
 
-	private void setBestCards(int i) {
+	protected void setBestCards(int i) {
+
 		bestCards = new ArrayList<>();
 		bestCards.add(cards.get(i));
 		bestCards.add(cards.get(i + 1));
+		cardsInHand.removeAll(bestCards);
+		bestCards.addAll(cardsInHand);
+
 	}
 
 }

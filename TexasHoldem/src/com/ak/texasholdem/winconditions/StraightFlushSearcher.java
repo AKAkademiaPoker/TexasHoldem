@@ -12,14 +12,16 @@ import com.ak.texasholdem.cards.Suit;
 
 public class StraightFlushSearcher extends FlushSearch {
 
-	public StraightFlushSearcher(List<Card> cards) {
-		super(cards);
-	}
 
+
+	public StraightFlushSearcher(List<Card> cardsOnBoard, List<Card> cardsInHand) {
+		super(cardsOnBoard, cardsInHand);
+	}
+	// TODO: kiszedni a NULL-okat!
 	@Override
 	public HandTypes search() {
 		List<Card> sfs = new ArrayList<>();
-		HandTypeSearcher fsc = new FlushSearch(cards);
+		HandTypeSearcher fsc = new FlushSearch(cards, null);
 		for (int i = 0; i < cards.size() - 1; i++) {
 			if (HandTypes.FLUSH.equals(fsc.search())) {
 				Suit suit = getMostFrequentSuit();
@@ -27,7 +29,7 @@ public class StraightFlushSearcher extends FlushSearch {
 			}
 		}
 		if (sfs.size() >= 5) {
-			HandTypeSearcher searcher = new StraightSearcher(sfs);
+			HandTypeSearcher searcher = new StraightSearcher(sfs, null);
 			if (HandTypes.STRAIGHT.equals(searcher.search())) {
 				setBestCards(sfs);
 				return HandTypes.STRAIGHT_FLUSH;

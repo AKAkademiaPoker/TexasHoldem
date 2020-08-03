@@ -8,8 +8,9 @@ import com.ak.texasholdem.cards.Suit;
 
 public class FlushSearch extends HandTypeSearcher {
 
-	public FlushSearch(List<Card> cards) {
-		super(cards);
+	
+	public FlushSearch(List<Card> cardsOnBoard, List<Card> cardsInHand) {
+		super(cardsOnBoard, cardsInHand);
 	}
 
 	protected Suit getMostFrequentSuit() {

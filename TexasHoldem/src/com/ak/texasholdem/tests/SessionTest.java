@@ -17,6 +17,7 @@ public class SessionTest {
 		players.addPlayer(new Player("BBB", "", "", 5000));
 		players.addPlayer(new Player("CCC", "", "", 5000));
 		players.addPlayer(new Player("DDD", "", "", 5000));
+		
 
 		Deck deck = new Deck();
 		Session session = new Session(board, players, deck);

@@ -1,5 +1,6 @@
 package com.ak.texasholdem.game;
 
+import java.util.List;
 import java.util.Scanner;
 
 import com.ak.texasholdem.board.Board;
@@ -11,6 +12,7 @@ import com.ak.texasholdem.menu.MenuPoint;
 import com.ak.texasholdem.player.Player;
 import com.ak.texasholdem.player.Players;
 import com.ak.texasholdem.winconditions.ResultSearcher;
+import com.ak.texasholdem.winconditions.WinnerSearcher;
 
 public class Session {
 	private Scanner scanner = new Scanner(System.in);
@@ -63,12 +65,14 @@ public class Session {
 		}
 		ResultSearcher rs = new ResultSearcher(board.getVisibleCards(), players.getPlayers());
 		rs.doSearch();
+		getWinner();
+		
 		for (Player player : players.getPlayers()) {
 			System.out.println(player.getNickname() + player.getBestCards() + player.getBestHandType());
 			
 		}
 	}
-	// TODO: kiértékelés (nyerő kombinációk enum/list) + kifizetés
+	// TODO: nyertesnek kifizetés
 	// TODO: vakok forgatása
 	// TODO: külön Game class amiben fut egy sessionökből álló ciklus, amég vannak
 	// játékosok.
@@ -89,16 +93,22 @@ public class Session {
 //			if (bank == minPot * 1.5) {
 //				i++;
 //			}
-			System.out.println("---------------------------------");
 //			System.out.println();
 //			System.out.println();
 			int index = i % players.getPlayers()
 					.size();
 			Player current = players.getPlayers()
 					.get(index);
+			
+			if(!current.isInGame()) {
+				continue;
+			}
+			System.out.println("---------------------------------");
+			
 			System.out.println(current.toString());
 			System.out.println("Bankban lévő összeg: " + bank);
 			System.out.println(board);
+			
 
 			if (players.onlyOneNotChecked() && actualRaise == current.getSessionPot()) {
 				menu = new Menu("játék call nélkül");
@@ -145,18 +155,18 @@ public class Session {
 	private void endSession() {
 		Player winner = players.getLastInGame();
 		winner.setCash(winner.getCash() + bank);
-//		System.out.println(winner);
 		winner.showCards(scanner);
 		hasWinner = true;
 	}
 
-	// TODO: objektumot készíteni a wincon-okból., kiértékelés
-	// meghatározni, hogy kinek voltak a legmagasabb lapjai
+	//TODO: validálni, hogy 1 nyertes van-e...
 	private Player getWinner() {
-		if (true) {
-			return null;
-		}
-		return null;
+		WinnerSearcher ws = new WinnerSearcher(players.getPlayers());
+		List<Player> winner = ws.getWinner();
+		System.out.println(winner);
+		winner.get(0).setCash(winner.get(0).getCash() + bank);
+		winner.get(0).showCards(scanner);
+		return winner.get(0);
 	}
 
 	private void doCall(Player current) {

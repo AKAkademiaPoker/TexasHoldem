@@ -13,8 +13,10 @@ public class StraightSearcher extends HandTypeSearcher {
 
 	private List<Card> cardsList;
 
-	public StraightSearcher(List<Card> cards) {
-		super(cards);
+
+
+	public StraightSearcher(List<Card> cardsOnBoard, List<Card> cardsInHand) {
+		super(cardsOnBoard, cardsInHand);
 	}
 
 	@Override

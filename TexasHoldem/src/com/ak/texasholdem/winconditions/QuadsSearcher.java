@@ -8,8 +8,10 @@ import com.ak.texasholdem.cards.Rank;
 
 public class QuadsSearcher extends HandTypeSearcher {
 
-	public QuadsSearcher(List<Card> cards) {
-		super(cards);
+
+
+	public QuadsSearcher(List<Card> cardsOnBoard, List<Card> cardsInHand) {
+		super(cardsOnBoard, cardsInHand);
 	}
 
 	@Override

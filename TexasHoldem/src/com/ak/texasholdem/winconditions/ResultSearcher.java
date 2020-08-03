@@ -19,56 +19,58 @@ public class ResultSearcher {
 
 	public void doSearch() {
 		for (Player player : players) {
-			List<Card> currentPlayerCards = new ArrayList<Card>(visibleCardsOnBoard);
-			currentPlayerCards.add(player.getCard1());
-			currentPlayerCards.add(player.getCard2());
-			HandTypeSearcher searcher = new RoyalFlushSearcher(currentPlayerCards);
+			List<Card> cardsOnBoard = new ArrayList<Card>(visibleCardsOnBoard);
+			List<Card> cardsInHand = new ArrayList<>();
+			cardsInHand.add(player.getCard1());
+			cardsInHand.add(player.getCard2());
+			HandTypeSearcher searcher = new RoyalFlushSearcher(cardsOnBoard, cardsInHand);
 			
 			if(HandTypes.ROYAL_FLUSH.equals(searcher.search())) {
 				setBestCardsAndHandType(player, searcher);
 				continue;
 			}
-			searcher = new StraightFlushSearcher(currentPlayerCards);
+			searcher = new StraightFlushSearcher(cardsOnBoard, cardsInHand);
 			if(HandTypes.STRAIGHT_FLUSH.equals(searcher.search())) {
 				setBestCardsAndHandType(player, searcher);
 				continue;
 			}
-			searcher = new QuadsSearcher(currentPlayerCards);
+			searcher = new QuadsSearcher(cardsOnBoard, cardsInHand);
 			if(HandTypes.FOUR_OF_A_KIND.equals(searcher.search())) {
 				setBestCardsAndHandType(player, searcher);
 				continue;
 			}
-			searcher = new FullHouseSearcher(currentPlayerCards);
+			searcher = new FullHouseSearcher(cardsOnBoard, cardsInHand);
 			if(HandTypes.FULL_HOUSE.equals(searcher.search())) {
 				setBestCardsAndHandType(player, searcher);
 				continue;
 			}
-			searcher = new FlushSearch(currentPlayerCards);
+			searcher = new FlushSearch(cardsOnBoard, cardsInHand);
 			if(HandTypes.FLUSH.equals(searcher.search())) {
 				setBestCardsAndHandType(player, searcher);
 				continue;
 			}
-			searcher = new StraightSearcher(currentPlayerCards);
+			searcher = new StraightSearcher(cardsOnBoard, cardsInHand);
 			if(HandTypes.STRAIGHT.equals(searcher.search())) {
 				setBestCardsAndHandType(player, searcher);
 				continue;
 			}
-			searcher = new TripleSearcher(currentPlayerCards);
+			searcher = new TripleSearcher(cardsOnBoard, cardsInHand);
 			if(HandTypes.TRIPLE.equals(searcher.search())) {
 				setBestCardsAndHandType(player, searcher);
+				
 				continue;
 			}
-			searcher = new TwoPairSearcher(currentPlayerCards);
+			searcher = new TwoPairSearcher(cardsOnBoard, cardsInHand);
 			if(HandTypes.TWO_PAIRS.equals(searcher.search())) {
 				setBestCardsAndHandType(player, searcher);
 				continue;
 			}
-			searcher = new PairSearcher(currentPlayerCards);
+			searcher = new PairSearcher(cardsOnBoard, cardsInHand);
 			if(HandTypes.PAIR.equals(searcher.search())) {
 				setBestCardsAndHandType(player, searcher);
 				continue;
 			}
-			searcher = new HighCardSearcher(currentPlayerCards);
+			searcher = new HighCardSearcher(cardsOnBoard, cardsInHand);
 			if(HandTypes.HIGH_CARD.equals(searcher.search())) {
 				setBestCardsAndHandType(player, searcher);
 				continue;

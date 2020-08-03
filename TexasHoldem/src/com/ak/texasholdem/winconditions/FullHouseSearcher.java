@@ -7,20 +7,22 @@ import com.ak.texasholdem.cards.Card;
 
 public class FullHouseSearcher extends HandTypeSearcher {
 
-	public FullHouseSearcher(List<Card> cards) {
-		super(cards);
+	
+
+	public FullHouseSearcher(List<Card> cardsOnBoard, List<Card> cardsInHand) {
+		super(cardsOnBoard, cardsInHand);
 	}
 
 	@Override
 	public HandTypes search() {
 
-		HandTypeSearcher hts = new TripleSearcher(cards);
+		HandTypeSearcher hts = new TripleSearcher(cardsOnBoard, cardsInHand);
 		if (HandTypes.TRIPLE.equals(hts.search())) {
 			List<Card> newCards = new ArrayList<>();
 			newCards.addAll(hts.getBestCards());
 			List<Card> remainCards = new ArrayList<>(cards);
 			remainCards.removeAll(newCards);
-			hts = new PairSearcher(remainCards);
+			hts = new PairSearcher(remainCards, new ArrayList<Card>());
 			if (HandTypes.PAIR.equals(hts.search())) {
 				newCards.addAll(hts.getBestCards());
 				setBestCards(newCards);

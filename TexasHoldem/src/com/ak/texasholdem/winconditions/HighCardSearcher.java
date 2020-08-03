@@ -7,8 +7,10 @@ import com.ak.texasholdem.cards.Card;
 
 public class HighCardSearcher extends HandTypeSearcher {
 
-	public HighCardSearcher(List<Card> cards) {
-		super(cards);
+
+
+	public HighCardSearcher(List<Card> cardsOnBoard, List<Card> cardsInHand) {
+		super(cardsOnBoard, cardsInHand);
 	}
 
 	@Override

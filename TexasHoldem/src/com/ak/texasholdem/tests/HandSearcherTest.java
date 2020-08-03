@@ -38,7 +38,7 @@ public class HandSearcherTest {
 		testCards.add(new Card(Suit.DIAMONDS, Rank.TWO));
 
 		System.out.println("    eredeti: " + testCards);
-		HandTypeSearcher searcher = new QuadsSearcher(testCards);
+		HandTypeSearcher searcher = new QuadsSearcher(testCards, new ArrayList<Card>());
 		System.out.println("sorbarakott: " + testCards);
 		System.out.println(searcher.search());
 

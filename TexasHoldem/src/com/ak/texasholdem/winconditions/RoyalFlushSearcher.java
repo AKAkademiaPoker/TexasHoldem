@@ -9,8 +9,10 @@ import com.ak.texasholdem.cards.Suit;
 
 public class RoyalFlushSearcher extends StraightFlushSearcher {
 
-	public RoyalFlushSearcher(List<Card> cards) {
-		super(cards);
+
+
+	public RoyalFlushSearcher(List<Card> cardsOnBoard, List<Card> cardsInHand) {
+		super(cardsOnBoard, cardsInHand);
 	}
 
 	@Override
@@ -30,7 +32,7 @@ public class RoyalFlushSearcher extends StraightFlushSearcher {
 				temp.add(card2);
 			}
 		}
-		HandTypeSearcher fsc = new FlushSearch(temp);
+		HandTypeSearcher fsc = new FlushSearch(temp, new ArrayList<Card>());
 		if (temp.size() >= 5) {
 			if (HandTypes.FLUSH.equals(fsc.search())) {
 				setBestCards();

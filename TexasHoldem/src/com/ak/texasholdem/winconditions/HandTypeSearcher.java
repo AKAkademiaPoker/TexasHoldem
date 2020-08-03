@@ -12,9 +12,15 @@ import com.ak.texasholdem.cards.Suit;
 public abstract class HandTypeSearcher {
 	protected List<Card> cards;
 	protected List<Card> bestCards;
+	protected List<Card> cardsOnBoard;
+	protected List<Card> cardsInHand;
+	
 
-	public HandTypeSearcher(List<Card> cards) {
-		this.cards = cards;
+	public HandTypeSearcher(List<Card> cardsOnBoard, List<Card> cardsInHand) {
+		this.cardsOnBoard = cardsOnBoard;
+		this.cardsInHand = cardsInHand;
+		cards = new ArrayList<>(cardsInHand);
+		cards.addAll(cardsOnBoard);
 		sortCardsByRank(this.cards);
 	}
 
