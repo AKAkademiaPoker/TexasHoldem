@@ -24,7 +24,7 @@ public abstract class HandTypeSearcher {
 		sortCardsByRank(this.cards);
 	}
 
-	public void sortCardsByRank(List<Card> cards) {
+	public static void sortCardsByRank(List<Card> cards) {
 		Comparator<Card> c = new Comparator<Card>() {
 
 			@Override

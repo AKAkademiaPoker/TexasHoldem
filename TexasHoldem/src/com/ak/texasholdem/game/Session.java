@@ -1,7 +1,7 @@
 package com.ak.texasholdem.game;
 
-import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 import com.ak.texasholdem.board.Board;
 import com.ak.texasholdem.cards.Deck;
@@ -14,16 +14,9 @@ import com.ak.texasholdem.player.Players;
 import com.ak.texasholdem.winconditions.ResultSearcher;
 import com.ak.texasholdem.winconditions.WinnerSearcher;
 
-public class Session {
+public class Session extends Game {
 	private Scanner scanner = new Scanner(System.in);
-	private Board board;
-	private Players players;
-	private Deck deck;
 
-	private int bigBlindIndex = 1;
-	private int smallBlindIndex = 0;
-
-	private int minPot = 250;
 	private int bank = 0;
 	private int actualRaise = minPot;
 
@@ -31,10 +24,10 @@ public class Session {
 
 	private Menu menu = new Menu("játék check nélkül");
 
-	public Session(Board board, Players players, Deck deck) {
-		this.board = board;
-		this.players = players;
-		this.deck = deck;
+	public Session(Players players, int minPot) {
+		super(players, minPot);
+		super.board = new Board();
+		super.deck = new Deck();
 	}
 
 	public void run() {
@@ -44,7 +37,7 @@ public class Session {
 		CLOSE: for (int i = 0; i < 4; i++) {
 			System.out.println("Round :" + (i + 1) + "----------");
 			for (Player player : players.getPlayers()) {
-				if(player.isInGame()) {
+				if (player.isInGame()) {
 					player.setChecked(false);
 				}
 			}
@@ -63,20 +56,18 @@ public class Session {
 				break;
 			}
 		}
-		ResultSearcher rs = new ResultSearcher(board.getVisibleCards(), players.getPlayers());
-		rs.doSearch();
-		getWinner();
-		
+		if (!hasWinner) {
+			ResultSearcher rs = new ResultSearcher(board.getVisibleCards(), players.getPlayers());
+			rs.doSearch();
+			getWinner();
+		}
+
 		for (Player player : players.getPlayers()) {
 			System.out.println(player.getNickname() + player.getBestCards() + player.getBestHandType());
-			
+
 		}
 	}
-	// TODO: nyertesnek kifizetés
-	// TODO: vakok forgatása
-	// TODO: külön Game class amiben fut egy sessionökből álló ciklus, amég vannak
-	// játékosok.
-	// TODO: Game-ben: vakok, licitek, játékosok összeállítása
+	// TODO: Game-ben: licitek, játékosok összeállítása
 	// TODO: Board is full, 2-10 Players
 
 	private void addCards(int num) {
@@ -88,27 +79,18 @@ public class Session {
 	}
 
 	private void doRound() {
-		END: for (int i = players.getPlayers()
-				.size();; i++) {
-//			if (bank == minPot * 1.5) {
-//				i++;
-//			}
-//			System.out.println();
-//			System.out.println();
-			int index = i % players.getPlayers()
-					.size();
-			Player current = players.getPlayers()
-					.get(index);
-			
-			if(!current.isInGame()) {
+		END: for (int i = players.getPlayers().size() + smallBlindIndex;; i++) {
+			int index = i % players.getPlayers().size();
+			Player current = players.getPlayers().get(index);
+
+			if (!current.isInGame()) {
 				continue;
 			}
 			System.out.println("---------------------------------");
-			
+
 			System.out.println(current.toString());
 			System.out.println("Bankban lévő összeg: " + bank);
 			System.out.println(board);
-			
 
 			if (players.onlyOneNotChecked() && actualRaise == current.getSessionPot()) {
 				menu = new Menu("játék call nélkül");
@@ -159,14 +141,16 @@ public class Session {
 		hasWinner = true;
 	}
 
-	//TODO: validálni, hogy 1 nyertes van-e...
-	private Player getWinner() {
+	private Set<Player> getWinner() {
 		WinnerSearcher ws = new WinnerSearcher(players.getPlayers());
-		List<Player> winner = ws.getWinner();
-		System.out.println(winner);
-		winner.get(0).setCash(winner.get(0).getCash() + bank);
-		winner.get(0).showCards(scanner);
-		return winner.get(0);
+		Set<Player> winner = ws.getWinner();
+		int profitPerPlayer = bank / winner.size();
+		for (Player player : winner) {
+			player.setCash(player.getCash() + profitPerPlayer);
+			System.out.println(player + " " + player.getBestCards());
+		}
+
+		return winner;
 	}
 
 	private void doCall(Player current) {
@@ -191,24 +175,14 @@ public class Session {
 	}
 
 	private void blinds() {
-		players.getPlayers()
-				.get(bigBlindIndex)
-				.setSessionPot(minPot);
-		players.getPlayers()
-				.get(bigBlindIndex)
-				.setCash(players.getPlayers()
-						.get(bigBlindIndex)
-						.getCash() - minPot);
-		bank += minPot;
-		players.getPlayers()
-				.get(smallBlindIndex)
-				.setSessionPot(minPot / 2);
-		players.getPlayers()
-				.get(smallBlindIndex)
-				.setCash(players.getPlayers()
-						.get(smallBlindIndex)
-						.getCash() - (minPot / 2));
+
+		players.getPlayers().get(smallBlindIndex).setSessionPot(minPot / 2);
+		players.getPlayers().get(smallBlindIndex)
+		.setCash(players.getPlayers().get(smallBlindIndex).getCash() - (minPot / 2));
 		bank += (minPot / 2);
+		players.getPlayers().get(bigBlindIndex).setSessionPot(minPot);
+		players.getPlayers().get(bigBlindIndex).setCash(players.getPlayers().get(bigBlindIndex).getCash() - minPot);
+		bank += minPot;
 
 	}
 

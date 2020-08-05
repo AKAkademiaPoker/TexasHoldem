@@ -11,13 +11,12 @@ import com.ak.texasholdem.winconditions.HandTypes;
 
 public class Player extends User {
 
-	// TODO remove to another subclass
 	private int sessionPot;
 	private Card card1;
 	private Card card2;
 	private boolean isInGame;
 	private boolean isChecked = false;
-	
+
 	private HandTypes bestHandType;
 	private List<Card> bestCards;
 
@@ -102,6 +101,10 @@ public class Player extends User {
 	@Override
 	public String toString() {
 		return super.getNickname() + " " + super.getCash() + " " + card1.toString() + " " + card2.toString();
+	}
+	// TODO: player invite
+	public void addPlayer(Player player) {
+
 	}
 
 }

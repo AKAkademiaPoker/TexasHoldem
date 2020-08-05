@@ -13,15 +13,13 @@ public class SessionTest {
 		System.out.println("game setup");
 		Board board = new Board();
 		Players players = new Players();
-		players.addPlayer(new Player("AAA", "", "", 5000));
-		players.addPlayer(new Player("BBB", "", "", 5000));
-		players.addPlayer(new Player("CCC", "", "", 5000));
-		players.addPlayer(new Player("DDD", "", "", 5000));
+		players.addPlayerToTheBoard(new Player("AAA", "", "", 5000));
+		players.addPlayerToTheBoard(new Player("BBB", "", "", 5000));
+		players.addPlayerToTheBoard(new Player("CCC", "", "", 5000));
+		players.addPlayerToTheBoard(new Player("DDD", "", "", 5000));
 		
 
 		Deck deck = new Deck();
-		Session session = new Session(board, players, deck);
-		session.run();
 		System.out.println("game over");
 	}
 }

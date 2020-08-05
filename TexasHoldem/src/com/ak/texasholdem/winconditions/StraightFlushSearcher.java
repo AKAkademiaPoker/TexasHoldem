@@ -17,11 +17,11 @@ public class StraightFlushSearcher extends FlushSearch {
 	public StraightFlushSearcher(List<Card> cardsOnBoard, List<Card> cardsInHand) {
 		super(cardsOnBoard, cardsInHand);
 	}
-	// TODO: kiszedni a NULL-okat!
+	// TODO: ellenőrizni, hogy minden NULL-t kiszedtünk-e.
 	@Override
 	public HandTypes search() {
 		List<Card> sfs = new ArrayList<>();
-		HandTypeSearcher fsc = new FlushSearch(cards, null);
+		HandTypeSearcher fsc = new FlushSearch(cards, new ArrayList<>());
 		for (int i = 0; i < cards.size() - 1; i++) {
 			if (HandTypes.FLUSH.equals(fsc.search())) {
 				Suit suit = getMostFrequentSuit();
@@ -29,7 +29,7 @@ public class StraightFlushSearcher extends FlushSearch {
 			}
 		}
 		if (sfs.size() >= 5) {
-			HandTypeSearcher searcher = new StraightSearcher(sfs, null);
+			HandTypeSearcher searcher = new StraightSearcher(sfs, new ArrayList<>());
 			if (HandTypes.STRAIGHT.equals(searcher.search())) {
 				setBestCards(sfs);
 				return HandTypes.STRAIGHT_FLUSH;

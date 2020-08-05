@@ -28,8 +28,8 @@ public class PairSearcher extends HandTypeSearcher {
 		bestCards = new ArrayList<>();
 		bestCards.add(cards.get(i));
 		bestCards.add(cards.get(i + 1));
-		cardsInHand.removeAll(bestCards);
-		bestCards.addAll(cardsInHand);
+//		cardsInHand.removeAll(bestCards);
+//		bestCards.addAll(cardsInHand);
 
 	}
 

@@ -2,6 +2,7 @@ package com.ak.texasholdem.tests;
 
 import com.ak.texasholdem.board.Board;
 import com.ak.texasholdem.cards.Card;
+import com.ak.texasholdem.cards.Deck;
 import com.ak.texasholdem.cards.Rank;
 import com.ak.texasholdem.cards.Suit;
 import com.ak.texasholdem.player.Player;
@@ -13,29 +14,34 @@ public class SpecialSessionTest {
 	public static void main(String[] args) {
 		Board board = new Board();
 		Players players = new Players();
-		players.addPlayer(new Player("BBB", "", "", 5000));
-		players.addPlayer(new Player("AAA", "", "", 5000));
-		
+		Deck deck = new Deck();
+		players.addPlayerToTheBoard(new Player("Player 1", "", "", 5000));
+		players.addPlayerToTheBoard(new Player("Player 2", "", "", 5000));
+		players.addPlayerToTheBoard(new Player("Player 3", "", "", 5000));
+		players.addPlayerToTheBoard(new Player("Player 4", "", "", 5000));
+
 		for (Player player : players.getPlayers()) {
-			player.setCard1(new Card(Suit.CLUBS, Rank.ACE));
-			player.setCard2(new Card(Suit.CLUBS, Rank.KING));
+			player.setCard1(deck.getCard());
+			player.setCard2(deck.getCard());
 			player.setInGame(true);
 			player.setChecked(true);
+			System.out.println(player);
 		}
-		board.addVisibleCards(new Card(Suit.DIAMONDS, Rank.NINE));
-		board.addVisibleCards(new Card(Suit.SPADES, Rank.EIGHT));
-		board.addVisibleCards(new Card(Suit.DIAMONDS, Rank.FIVE));
-		board.addVisibleCards(new Card(Suit.SPADES, Rank.THREE));
-		board.addVisibleCards(new Card(Suit.DIAMONDS, Rank.TWO));
-		
-		
-		
+
+		board.addVisibleCards(new Card(Suit.SPADES, Rank.FOUR));
+		board.addVisibleCards(new Card(Suit.DIAMONDS, Rank.FOUR));
+		board.addVisibleCards(new Card(Suit.SPADES, Rank.FOUR));
+		board.addVisibleCards(new Card(Suit.SPADES, Rank.FOUR));
+		board.addVisibleCards(new Card(Suit.SPADES, Rank.TWO));
+
 		ResultSearcher rs = new ResultSearcher(board.getVisibleCards(), players.getPlayers());
 		rs.doSearch();
+		for (Player player : players.getPlayers()) {
+			System.out.println("best cards: " + player.getBestCards());
+		}
 		WinnerSearcher ws = new WinnerSearcher(players.getPlayers());
 		System.out.println(ws.getWinner());
-		
-		
+
 	}
 
 }

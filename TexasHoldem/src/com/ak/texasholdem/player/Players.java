@@ -17,7 +17,7 @@ public class Players {
 		return players;
 	}
 
-	public void addPlayer(User player) {
+	public void addPlayerToTheBoard(User player) {
 		if (!isPlayersFull()) {
 			players.add((Player) player);
 		} else {
@@ -65,8 +65,7 @@ public class Players {
 	public Player getLastInGame() {
 
 		for (int i = 0; i < players.size(); i++) {
-			if (players.get(i)
-					.isInGame()) {
+			if (players.get(i).isInGame()) {
 				return players.get(i);
 			}
 		}
@@ -91,5 +90,13 @@ public class Players {
 			}
 		}
 		return counter <= 1;
+	}
+
+	public void removeBankruptPlayers() {
+		for (Player player : players) {
+			if (player.getCash() <= 0) {
+				players.remove(player);
+			}
+		}
 	}
 }

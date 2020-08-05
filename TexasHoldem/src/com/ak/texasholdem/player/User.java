@@ -56,9 +56,5 @@ public class User {
 	public int getId() {
 		return id;
 	}
-	//TODO: kideríteni mi ez!
-	public void addPlayer(Player player) {
-
-	}
 
 }
