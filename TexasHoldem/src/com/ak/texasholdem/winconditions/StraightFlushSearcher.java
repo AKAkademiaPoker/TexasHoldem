@@ -1,11 +1,8 @@
 package com.ak.texasholdem.winconditions;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import com.ak.texasholdem.cards.Card;
 import com.ak.texasholdem.cards.Suit;

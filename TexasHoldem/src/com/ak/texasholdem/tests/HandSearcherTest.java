@@ -6,18 +6,8 @@ import java.util.List;
 import com.ak.texasholdem.cards.Card;
 import com.ak.texasholdem.cards.Rank;
 import com.ak.texasholdem.cards.Suit;
-import com.ak.texasholdem.winconditions.FlushSearch;
-import com.ak.texasholdem.winconditions.FullHouseSearcher;
 import com.ak.texasholdem.winconditions.HandTypeSearcher;
-import com.ak.texasholdem.winconditions.HandTypes;
-import com.ak.texasholdem.winconditions.HighCardSearcher;
-import com.ak.texasholdem.winconditions.PairSearcher;
 import com.ak.texasholdem.winconditions.QuadsSearcher;
-import com.ak.texasholdem.winconditions.RoyalFlushSearcher;
-import com.ak.texasholdem.winconditions.StraightFlushSearcher;
-import com.ak.texasholdem.winconditions.StraightSearcher;
-import com.ak.texasholdem.winconditions.TripleSearcher;
-import com.ak.texasholdem.winconditions.TwoPairSearcher;
 
 public class HandSearcherTest {
 

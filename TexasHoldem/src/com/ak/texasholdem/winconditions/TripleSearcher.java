@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ak.texasholdem.cards.Card;
-import com.ak.texasholdem.player.Player;
 
 public class TripleSearcher extends HandTypeSearcher implements HighCardGetter{
 
